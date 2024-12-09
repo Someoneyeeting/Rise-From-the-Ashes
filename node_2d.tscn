@@ -19,6 +19,3 @@ shape = SubResource("RectangleShape2D_n7sx6")
 
 [node name="player" parent="StaticBody2D" instance=ExtResource("1_yaku2")]
 position = Vector2(204, 397)
-speed = 200.0
-jumpheight = 200.0
-rising_speed = 1000.0

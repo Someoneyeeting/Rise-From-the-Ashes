@@ -2,14 +2,16 @@ extends CharacterBody2D
 
 
 @export
-var speed : float = 20
+var speed : float = 200
 
 @export
-var jumpheight : float = 100
+var jumpheight : float = 200
 
 @export
-var rising_speed : float = 10
+var rising_speed : float = 1000
 
+@export 
+var rising_finish_speed : float = 400
 
 func normal_move():
 	var move := Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -30,15 +32,14 @@ func normal_move():
 
 func rise():
 	$rising.start()
-	velocity.y = -rising_speed
+	$flamestime.start()
 
 func rising():
 	velocity.x = 0
-	velocity.y += 30
-	#velocity.y = -rising_speed * ($rising.time_left / $rising.wait_time)
+	velocity.y = -lerp(rising_finish_speed,rising_speed,$rising.time_left / $rising.wait_time)
 
 func _physics_process(delta: float) -> void:
-	$flames.emitting = not $rising.is_stopped()
+	$flames.emitting = not $flamestime.is_stopped()
 	if($rising.is_stopped()):
 		normal_move()
 	else:

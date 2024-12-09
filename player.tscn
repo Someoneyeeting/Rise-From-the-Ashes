@@ -16,8 +16,9 @@ emission_shape = 1
 emission_sphere_radius = 18.55
 angle_min = -720.0
 angle_max = 720.0
-direction = Vector3(0, 1, 0)
-spread = 14.505
+inherit_velocity_ratio = 2.785
+direction = Vector3(0, 0, 0)
+spread = 180.0
 initial_velocity_max = 96.77
 angular_velocity_min = -255.48
 angular_velocity_max = 193.55
@@ -28,11 +29,20 @@ scale_curve = SubResource("CurveTexture_gxykr")
 color = Color(1, 0.741768, 0, 1)
 hue_variation_min = -0.09
 hue_variation_max = 0.08
+turbulence_enabled = true
+turbulence_noise_strength = 12.84
+turbulence_noise_scale = 3.113
+turbulence_noise_speed_random = 4.0
+turbulence_influence_min = 0.0
+turbulence_influence_max = 1.0
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 1.49012e-06
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo88o"]
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_6ogng")
+rising_finish_speed = 500.0
 
 [node name="flames" type="GPUParticles2D" parent="."]
 emitting = false
@@ -45,5 +55,9 @@ preprocess = 0.3
 shape = SubResource("RectangleShape2D_jo88o")
 
 [node name="rising" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.1
+one_shot = true
+
+[node name="flamestime" type="Timer" parent="."]
+wait_time = 0.2
 one_shot = true
