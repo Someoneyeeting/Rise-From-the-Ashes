@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgeek501cs2tu"]
+
+[sub_resource type="Curve" id="Curve_p14s7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.866667, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nee7n"]
+curve = SubResource("Curve_p14s7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uy66e"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 18.35
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 220.43
+initial_velocity_max = 543.01
+angular_velocity_min = -255.48
+angular_velocity_max = 193.55
+gravity = Vector3(0, 98, 0)
+scale_min = 0.1
+scale_max = 7.6
+scale_curve = SubResource("CurveTexture_nee7n")
+color = Color(1, 0.979897, 0, 1)
+hue_variation_min = -0.09
+hue_variation_max = 0.08
+turbulence_enabled = true
+turbulence_noise_strength = 12.84
+turbulence_noise_scale = 3.113
+turbulence_noise_speed_random = 4.0
+turbulence_influence_min = 0.0
+turbulence_influence_max = 1.0
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 1.49012e-06
+
+[node name="explosion" type="GPUParticles2D"]
+emitting = false
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_uy66e")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0

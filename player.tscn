@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5fcsyr0qilmn"]
+[gd_scene load_steps=7 format=3 uid="uid://c5fcsyr0qilmn"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6ogng"]
 
@@ -17,9 +17,9 @@ emission_sphere_radius = 18.55
 angle_min = -720.0
 angle_max = 720.0
 inherit_velocity_ratio = 2.785
-direction = Vector3(0, 0, 0)
+direction = Vector3(0, 1, 0)
 spread = 180.0
-initial_velocity_max = 96.77
+initial_velocity_max = 322.58
 angular_velocity_min = -255.48
 angular_velocity_max = 193.55
 gravity = Vector3(0, 98, 0)
@@ -40,13 +40,15 @@ turbulence_initial_displacement_max = 1.49012e-06
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo88o"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kj1i6"]
+
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_6ogng")
-rising_finish_speed = 500.0
+rising_finish_speed = 250.0
 
 [node name="flames" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 1000
+amount = 3000
 process_material = SubResource("ParticleProcessMaterial_pi5xo")
 lifetime = 0.9
 preprocess = 0.3
@@ -55,9 +57,14 @@ preprocess = 0.3
 shape = SubResource("RectangleShape2D_jo88o")
 
 [node name="rising" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.3
 one_shot = true
 
 [node name="flamestime" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.5
 one_shot = true
+
+[node name="firedetect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="firedetect"]
+shape = SubResource("RectangleShape2D_kj1i6")

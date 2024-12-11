@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://xl2c3slxjx3o"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tiqq4"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(21.6, 1, 0)
+direction = Vector3(0, -1, 0)
+spread = 16.18
+initial_velocity_max = 129.03
+gravity = Vector3(0, 70, 0)
+damping_max = 49.463
+scale_max = 7.69
+color = Color(1, 0.854708, 0, 1)
+hue_variation_min = -2.23517e-08
+hue_variation_max = 0.05
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e235j"]
+size = Vector2(49, 23)
+
+[node name="Fire" type="Area2D" groups=["fire"]]
+
+[node name="CPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 208
+process_material = SubResource("ParticleProcessMaterial_tiqq4")
+lifetime = 0.3
+randomness = 1.0
+fixed_fps = 0
+draw_order = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -7.5)
+shape = SubResource("RectangleShape2D_e235j")

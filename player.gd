@@ -25,7 +25,11 @@ func normal_move():
 		velocity.y = -jumpheight
 	
 	if(Input.is_action_just_pressed("rise")):
-		rise()
+		for i in $firedetect.get_overlapping_areas():
+			if i.is_in_group("fire"):
+				global_position = i.global_position
+				rise()
+				break
 	
 	velocity.x = move * speed
 	
@@ -33,6 +37,7 @@ func normal_move():
 func rise():
 	$rising.start()
 	$flamestime.start()
+	Particalhandler.emit("explosion",global_position)
 
 func rising():
 	velocity.x = 0
