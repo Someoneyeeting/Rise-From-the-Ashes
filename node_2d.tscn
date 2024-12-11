@@ -31,7 +31,8 @@ shape = SubResource("RectangleShape2D_n7sx6")
 position = Vector2(390, 542)
 
 [node name="Fire2" parent="." instance=ExtResource("2_yl3cm")]
-position = Vector2(266, 318)
+position = Vector2(114, 297)
+rotation = 0.770852
 
 [node name="player" parent="." instance=ExtResource("1_yaku2")]
 position = Vector2(75, 540)

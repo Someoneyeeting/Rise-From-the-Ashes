@@ -46,7 +46,9 @@ turbulence_initial_displacement_max = 1.49012e-06
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_6ogng")
-rising_finish_speed = 250.0
+jumpheight = 320.0
+rising_finish_speed = 300.0
+max_fall_speed = 1000.0
 
 [node name="flames" type="GPUParticles2D" parent="."]
 emitting = false
@@ -59,7 +61,7 @@ preprocess = 0.3
 shape = SubResource("RectangleShape2D_jo88o")
 
 [node name="rising" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.4
 one_shot = true
 
 [node name="flamestime" type="Timer" parent="."]
