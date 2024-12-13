@@ -34,14 +34,23 @@ func normal_move():
 	if(Input.is_action_just_pressed("up")):
 		velocity.y = -jumpheight
 	
-	if(Input.is_action_just_pressed("rise")):
+	if(Input.is_action_just_pressed("rise") or true):
 		for i in $firedetect.get_overlapping_areas():
-			if i.is_in_group("fire"):
+			if i.is_in_group("fire") and i.on_fire:
 				lunch_dir = -Vector2.UP.rotated(i.global_rotation)
 				$flames.global_rotation = i.global_rotation
 				global_position = i.global_position
 				rise()
 				break
+				
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if collider.is_in_group("pushable"):
+			var collision_normal = collision.get_normal()
+			if abs(collision_normal.y) < 0.1: #ensuring player is not on top or bottom of the block
+				collider.apply_central_force(-collision_normal * 1000)
 	
 	
 	velocity.x = move * speed

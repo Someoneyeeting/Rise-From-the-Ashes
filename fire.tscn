@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://xl2c3slxjx3o"]
+[gd_scene load_steps=4 format=3 uid="uid://xl2c3slxjx3o"]
+
+[ext_resource type="Script" path="res://fire.gd" id="1_hjbgv"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tiqq4"]
 particle_flag_disable_z = true
@@ -18,11 +20,13 @@ hue_variation_max = 0.05
 size = Vector2(49, 23)
 
 [node name="Fire" type="Area2D" groups=["fire"]]
+script = ExtResource("1_hjbgv")
 
 [node name="CPUParticles2D" type="GPUParticles2D" parent="."]
 amount = 208
 process_material = SubResource("ParticleProcessMaterial_tiqq4")
 lifetime = 0.3
+preprocess = 0.7
 randomness = 1.0
 fixed_fps = 0
 draw_order = 0

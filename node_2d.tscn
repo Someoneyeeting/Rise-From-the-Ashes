@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccpwej3kwaens"]
+[gd_scene load_steps=6 format=3 uid="uid://ccpwej3kwaens"]
 
 [ext_resource type="PackedScene" uid="uid://c5fcsyr0qilmn" path="res://player.tscn" id="1_yaku2"]
 [ext_resource type="PackedScene" uid="uid://xl2c3slxjx3o" path="res://fire.tscn" id="2_yl3cm"]
+[ext_resource type="PackedScene" uid="uid://bngwplhy6ptwg" path="res://barrel.tscn" id="3_3ei7b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7sx6"]
 size = Vector2(260, 70)
@@ -19,7 +20,7 @@ position = Vector2(225, 491)
 shape = SubResource("RectangleShape2D_n7sx6")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(554, 468)
+position = Vector2(553.65, 466.762)
 shape = SubResource("RectangleShape2D_n7sx6")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
@@ -38,9 +39,16 @@ shape = SubResource("RectangleShape2D_6gxix")
 [node name="Fire" parent="." instance=ExtResource("2_yl3cm")]
 position = Vector2(390, 542)
 
+[node name="Fire3" parent="." instance=ExtResource("2_yl3cm")]
+position = Vector2(600.553, 542.286)
+on_fire = false
+
 [node name="Fire2" parent="." instance=ExtResource("2_yl3cm")]
 position = Vector2(184.202, 302.232)
 rotation = 0.583335
 
 [node name="player" parent="." instance=ExtResource("1_yaku2")]
 position = Vector2(75, 540)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_3ei7b")]
+position = Vector2(539.716, 112.705)
