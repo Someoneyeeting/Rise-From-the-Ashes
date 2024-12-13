@@ -27,8 +27,12 @@ shape = SubResource("RectangleShape2D_n7sx6")
 position = Vector2(219, 242)
 shape = SubResource("RectangleShape2D_n7sx6")
 
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(986.292, 361.692)
+shape = SubResource("RectangleShape2D_n7sx6")
+
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(506, 51)
+position = Vector2(497.181, 51)
 shape = SubResource("RectangleShape2D_n7sx6")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
@@ -36,11 +40,22 @@ position = Vector2(235.202, 199.232)
 rotation = 0.583335
 shape = SubResource("RectangleShape2D_6gxix")
 
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(654.566, 424.391)
+rotation = 0.796202
+shape = SubResource("RectangleShape2D_6gxix")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(616.407, 424.652)
+rotation = 2.34389
+shape = SubResource("RectangleShape2D_6gxix")
+
 [node name="Fire" parent="." instance=ExtResource("2_yl3cm")]
 position = Vector2(390, 542)
 
 [node name="Fire3" parent="." instance=ExtResource("2_yl3cm")]
-position = Vector2(600.553, 542.286)
+position = Vector2(606.21, 529.558)
+rotation = 0.803501
 on_fire = false
 
 [node name="Fire2" parent="." instance=ExtResource("2_yl3cm")]
