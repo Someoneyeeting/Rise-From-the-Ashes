@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccpwej3kwaens"]
+[gd_scene load_steps=7 format=3 uid="uid://ccpwej3kwaens"]
 
 [ext_resource type="PackedScene" uid="uid://c5fcsyr0qilmn" path="res://player.tscn" id="1_yaku2"]
 [ext_resource type="PackedScene" uid="uid://xl2c3slxjx3o" path="res://fire.tscn" id="2_yl3cm"]
 [ext_resource type="PackedScene" uid="uid://bngwplhy6ptwg" path="res://barrel.tscn" id="3_3ei7b"]
+[ext_resource type="Script" path="res://timer.gd" id="4_25t2y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7sx6"]
 size = Vector2(260, 70)
@@ -67,3 +68,10 @@ position = Vector2(75, 540)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_3ei7b")]
 position = Vector2(539.716, 112.705)
+
+[node name="label" type="Label" parent="."]
+offset_left = 31.498
+offset_top = 99.5337
+offset_right = 71.498
+offset_bottom = 122.534
+script = ExtResource("4_25t2y")
