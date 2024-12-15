@@ -120,17 +120,11 @@ func rising():
 		jump()
 
 
-func _handle_launch():
-	for i in $firedetect.get_overlapping_areas():
-		if i.is_in_group("fire") and i.on_fire:
-			if(i == last_launch): continue
-			lunch_dir = -Vector2.UP.rotated(i.global_rotation)
-			$flames.global_rotation = i.global_rotation
-			global_position = i.global_position
-			last_launch = i
-			has_dash = true
-			rise()
-			break
+func _handle_launch(i):
+	lunch_dir = -Vector2.UP.rotated(i.global_rotation)
+	$flames.global_rotation = i.global_rotation
+	global_position = i.global_position
+	rise()
 ################
 
 
@@ -139,8 +133,6 @@ func _physics_process(delta: float) -> void:
 	$flames.emitting = not $flamestime.is_stopped()
 	_handle_jump()
 	
-	_handle_launch()
-	
 	_handle_dash()
 	
 	if($rising.is_stopped()):
@@ -148,3 +140,18 @@ func _physics_process(delta: float) -> void:
 	else:
 		rising()
 	move_and_slide()
+
+
+func _on_firedetect_area_entered(area: Area2D) -> void:
+	if(area.is_in_group("fire")):
+		_handle_launch(area)
+	if(area.is_in_group("dash")):
+		has_dash = true
+		CameraHandler.shake(0.2)
+		get_tree().paused = true 
+		$pause.start()
+		area.take()
+
+
+func _on_pause_timeout() -> void:
+	get_tree().paused = false

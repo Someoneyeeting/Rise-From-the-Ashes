@@ -89,3 +89,11 @@ one_shot = true
 unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
+
+[node name="pause" type="Timer" parent="."]
+process_mode = 3
+wait_time = 0.1
+one_shot = true
+
+[connection signal="area_entered" from="firedetect" to="." method="_on_firedetect_area_entered"]
+[connection signal="timeout" from="pause" to="." method="_on_pause_timeout"]

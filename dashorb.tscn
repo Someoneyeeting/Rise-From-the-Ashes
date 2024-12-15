@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://pc5wtqu8b405"]
+
+[ext_resource type="Script" path="res://dashorb.gd" id="1_88qbm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_633ta"]
+radius = 30.7621
+
+[node name="Dashorb" type="Area2D" groups=["dash"]]
+script = ExtResource("1_88qbm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_633ta")
+
+[node name="disable" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
