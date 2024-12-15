@@ -1,14 +1,17 @@
-extends RigidBody2D
+extends CharacterBody2D
 
 
 var prevspeed :float= 0
 
 func _physics_process(delta: float) -> void:
-	if(linear_velocity.y > 0):
-		linear_velocity.x /= 2
-	if(prevspeed - linear_velocity.y >= 700):
+	velocity.y += 30
+	#if(get_real_velocity().y > 0):
+		#get_real_velocity().x /= 2
+	if(prevspeed - get_real_velocity().y >= 900):
 		explode()
-	prevspeed = linear_velocity.y
+	prevspeed = get_real_velocity().y
+	velocity.x /= 1.4
+	move_and_slide()
 
 
 

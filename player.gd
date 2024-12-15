@@ -24,6 +24,8 @@ var lunch_dir : Vector2
 
 var last_launch : Node2D
 
+var has_dash := false
+
 
 ######jump######
 func jump():
@@ -53,7 +55,8 @@ func _handle_push_objects():
 		if collider.is_in_group("pushable"):
 			var collision_normal = collision.get_normal()
 			if abs(collision_normal.y) < 0.1: #ensuring player is not on top or bottom of the block
-				collider.apply_central_force(-collision_normal * 1000)
+				collider.velocity = -collision_normal * 200 * lerp(0.6,1.0,(abs(velocity.x) / max_speed))
+				#collider.move_and_slide()
 
 func _handle_falling():
 	if(velocity.y < 0):
@@ -79,6 +82,8 @@ func _handle_movement():
 func normal_move():
 	last_launch = null
 	
+	if(is_on_floor()):
+		has_dash = false
 	
 	_handle_falling()
 	
@@ -97,14 +102,17 @@ func rise():
 	$AudioStreamPlayer.play()
 	Particalhandler.emit("explosion",global_position)
 
+func _handle_dash():
+	if(has_dash):
+		if(Input.is_action_just_pressed("dash")):
+			lunch_dir = Vector2(Input.get_action_strength("right") - Input.get_action_strength("left"),Input.get_action_strength("down") - Input.get_action_strength("up"))
+			lunch_dir = -lunch_dir.normalized()
+			rise()
+			has_dash = false
+
 func rising():
 	velocity = -lerp(rising_finish_speed,rising_speed,$rising.time_left / $rising.wait_time) * lunch_dir
 		
-	
-	if(Input.is_action_just_pressed("dash")):
-		lunch_dir = Vector2(Input.get_action_strength("right") - Input.get_action_strength("left"),Input.get_action_strength("down") - Input.get_action_strength("up"))
-		lunch_dir = -lunch_dir.normalized()
-		rise()
 	if(get_real_velocity().length() <= 0.2):
 		$rising.stop()
 	if(Input.is_action_just_pressed("jump")):
@@ -120,6 +128,7 @@ func _handle_launch():
 			$flames.global_rotation = i.global_rotation
 			global_position = i.global_position
 			last_launch = i
+			has_dash = true
 			rise()
 			break
 ################
@@ -131,6 +140,8 @@ func _physics_process(delta: float) -> void:
 	_handle_jump()
 	
 	_handle_launch()
+	
+	_handle_dash()
 	
 	if($rising.is_stopped()):
 		normal_move()

@@ -67,7 +67,7 @@ rotation = 0.583335
 position = Vector2(75, 540)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_3ei7b")]
-position = Vector2(539.716, 112.705)
+position = Vector2(451.715, 113.894)
 
 [node name="label" type="Label" parent="."]
 offset_left = 75.3632

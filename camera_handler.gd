@@ -15,4 +15,4 @@ func _physics_process(delta: float) -> void:
 		if(shakedir == Vector2.ZERO):
 			$Camera2D.position = lerp(Vector2(randf_range(-10,10),randf_range(-10,10)),Vector2.ZERO,1 - $shake.time_left/$shake.wait_time)
 		else:
-			$Camera2D.position = lerp(shakedir.normalized() * randf_range(-shakedir.length(),shakedir.length()),Vector2.ZERO,1 - $shake.time_left/$shake.wait_time)
+			$Camera2D.position = lerp(shakedir.normalized() * randf_range(0.3,1) * shakedir,Vector2.ZERO,1 - $shake.time_left/$shake.wait_time)
