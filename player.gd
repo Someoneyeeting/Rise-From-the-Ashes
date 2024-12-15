@@ -19,12 +19,16 @@ var max_fall_speed : float = 20
 
 var lunch_dir : Vector2
 
+var last_launch : Node2D
+
 func jump():
 	velocity.y = -jumpheight
 	%cyote.stop()
 	%buffer.stop()
 
 func normal_move():
+	last_launch = null
+	
 	var move := Input.get_action_strength("right") - Input.get_action_strength("left")
 	
 	if(velocity.y < 0):
@@ -42,15 +46,6 @@ func normal_move():
 	if(%cyote.time_left > 0 and %buffer.time_left > 0):
 		jump()
 			
-	
-	
-	for i in $firedetect.get_overlapping_areas():
-		if i.is_in_group("fire") and i.on_fire:
-			lunch_dir = -Vector2.UP.rotated(i.global_rotation)
-			$flames.global_rotation = i.global_rotation
-			global_position = i.global_position
-			rise()
-			break
 			
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -60,7 +55,6 @@ func normal_move():
 			var collision_normal = collision.get_normal()
 			if abs(collision_normal.y) < 0.1: #ensuring player is not on top or bottom of the block
 				collider.apply_central_force(-collision_normal * 1000)
-	
 	
 	velocity.x = move * speed
 	
@@ -78,9 +72,20 @@ func rising():
 		lunch_dir = Vector2(Input.get_action_strength("right") - Input.get_action_strength("left"),Input.get_action_strength("down") - Input.get_action_strength("up"))
 		lunch_dir = -lunch_dir.normalized()
 		rise()
+	if(get_real_velocity().length() <= 0.2):
+		$rising.stop()
 
 func _physics_process(delta: float) -> void:
 	$flames.emitting = not $flamestime.is_stopped()
+	for i in $firedetect.get_overlapping_areas():
+		if i.is_in_group("fire") and i.on_fire:
+			if(i == last_launch): continue
+			lunch_dir = -Vector2.UP.rotated(i.global_rotation)
+			$flames.global_rotation = i.global_rotation
+			global_position = i.global_position
+			last_launch = i
+			rise()
+			break
 	if($rising.is_stopped()):
 		normal_move()
 	else:
