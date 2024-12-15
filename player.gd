@@ -24,22 +24,15 @@ var lunch_dir : Vector2
 
 var last_launch : Node2D
 
+
+######jump######
 func jump():
 	velocity.y = -jumpheight
 	%cyote.stop()
 	%buffer.stop()
+	
 
-func normal_move():
-	last_launch = null
-	
-	var move := Input.get_action_strength("right") - Input.get_action_strength("left")
-	
-	if(velocity.y < 0):
-		velocity.y += 18
-	else:
-		if(velocity.y < max_fall_speed):
-			velocity.y += 23
-		
+func _handle_jump():
 	if(Input.is_action_pressed("jump")):
 		%buffer.start()
 	if(is_on_floor()):
@@ -48,8 +41,11 @@ func normal_move():
 		%cyote.start()
 	if(%cyote.time_left > 0 and %buffer.time_left > 0):
 		jump()
-			
-			
+##################
+
+
+#######move#######
+func _handle_push_objects():
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
@@ -58,8 +54,16 @@ func normal_move():
 			var collision_normal = collision.get_normal()
 			if abs(collision_normal.y) < 0.1: #ensuring player is not on top or bottom of the block
 				collider.apply_central_force(-collision_normal * 1000)
-	
-	
+
+func _handle_falling():
+	if(velocity.y < 0):
+		velocity.y += 18
+	else:
+		if(velocity.y < max_fall_speed):
+			velocity.y += 23
+
+func _handle_movement():
+	var move := Input.get_action_strength("right") - Input.get_action_strength("left")
 	var move_speed = move * speed
 	if(move != 0):
 		if(sign(move) != sign(velocity.x)):
@@ -71,8 +75,21 @@ func normal_move():
 		move_speed = -velocity.x / 2
 	
 	velocity.x += move_speed
-	
 
+func normal_move():
+	last_launch = null
+	
+	
+	_handle_falling()
+	
+	_handle_push_objects()
+	
+	_handle_movement()
+
+##################
+
+
+#####rising#####
 func rise():
 	$rising.start()
 	$flamestime.start()
@@ -82,6 +99,8 @@ func rise():
 
 func rising():
 	velocity = -lerp(rising_finish_speed,rising_speed,$rising.time_left / $rising.wait_time) * lunch_dir
+		
+	
 	if(Input.is_action_just_pressed("dash")):
 		lunch_dir = Vector2(Input.get_action_strength("right") - Input.get_action_strength("left"),Input.get_action_strength("down") - Input.get_action_strength("up"))
 		lunch_dir = -lunch_dir.normalized()
@@ -92,8 +111,8 @@ func rising():
 		$rising.stop()
 		jump()
 
-func _physics_process(delta: float) -> void:
-	$flames.emitting = not $flamestime.is_stopped()
+
+func _handle_launch():
 	for i in $firedetect.get_overlapping_areas():
 		if i.is_in_group("fire") and i.on_fire:
 			if(i == last_launch): continue
@@ -103,6 +122,16 @@ func _physics_process(delta: float) -> void:
 			last_launch = i
 			rise()
 			break
+################
+
+
+
+func _physics_process(delta: float) -> void:
+	$flames.emitting = not $flamestime.is_stopped()
+	_handle_jump()
+	
+	_handle_launch()
+	
 	if($rising.is_stopped()):
 		normal_move()
 	else:
