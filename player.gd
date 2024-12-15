@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 @export
-var speed : float = 200
+var speed : float = 2
 
 @export
 var jumpheight : float = 200
@@ -12,6 +12,9 @@ var rising_speed : float = 1000
 
 @export 
 var rising_finish_speed : float = 400
+
+@export
+var max_speed : float = 300
 
 @export
 var max_fall_speed : float = 20
@@ -37,7 +40,7 @@ func normal_move():
 		if(velocity.y < max_fall_speed):
 			velocity.y += 23
 		
-	if(Input.is_action_pressed("up")):
+	if(Input.is_action_pressed("jump")):
 		%buffer.start()
 	if(is_on_floor()):
 		if(velocity.y > 0):
@@ -56,7 +59,18 @@ func normal_move():
 			if abs(collision_normal.y) < 0.1: #ensuring player is not on top or bottom of the block
 				collider.apply_central_force(-collision_normal * 1000)
 	
-	velocity.x = move * speed
+	
+	var move_speed = move * speed
+	if(move != 0):
+		if(sign(move) != sign(velocity.x)):
+			move_speed *= 2.4
+		else:
+			if(velocity.x * move >= max_speed):
+				move_speed = 0
+	else:
+		move_speed = -velocity.x / 2
+	
+	velocity.x += move_speed
 	
 
 func rise():
@@ -74,6 +88,9 @@ func rising():
 		rise()
 	if(get_real_velocity().length() <= 0.2):
 		$rising.stop()
+	if(Input.is_action_just_pressed("jump")):
+		$rising.stop()
+		jump()
 
 func _physics_process(delta: float) -> void:
 	$flames.emitting = not $flamestime.is_stopped()
