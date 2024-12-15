@@ -18,6 +18,12 @@ var max_fall_speed : float = 20
 
 
 var lunch_dir : Vector2
+
+func jump():
+	velocity.y = -jumpheight
+	%cyote.stop()
+	%buffer.stop()
+
 func normal_move():
 	var move := Input.get_action_strength("right") - Input.get_action_strength("left")
 	
@@ -27,22 +33,25 @@ func normal_move():
 		if(velocity.y < max_fall_speed):
 			velocity.y += 23
 		
+	if(Input.is_action_pressed("up")):
+		%buffer.start()
 	if(is_on_floor()):
 		if(velocity.y > 0):
 			velocity.y = 0
+		%cyote.start()
+	if(%cyote.time_left > 0 and %buffer.time_left > 0):
+		jump()
+			
 	
-	if(Input.is_action_just_pressed("up") and is_on_floor()):
-		velocity.y = -jumpheight
 	
-	if(Input.is_action_just_pressed("rise") or true):
-		for i in $firedetect.get_overlapping_areas():
-			if i.is_in_group("fire") and i.on_fire:
-				lunch_dir = -Vector2.UP.rotated(i.global_rotation)
-				$flames.global_rotation = i.global_rotation
-				global_position = i.global_position
-				rise()
-				break
-				
+	for i in $firedetect.get_overlapping_areas():
+		if i.is_in_group("fire") and i.on_fire:
+			lunch_dir = -Vector2.UP.rotated(i.global_rotation)
+			$flames.global_rotation = i.global_rotation
+			global_position = i.global_position
+			rise()
+			break
+			
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
@@ -59,12 +68,16 @@ func normal_move():
 func rise():
 	$rising.start()
 	$flamestime.start()
-	CameraHandler.shake(0.1,lunch_dir * 10)
+	CameraHandler.shake(0.13,lunch_dir * 30)
 	$AudioStreamPlayer.play()
 	Particalhandler.emit("explosion",global_position)
 
 func rising():
 	velocity = -lerp(rising_finish_speed,rising_speed,$rising.time_left / $rising.wait_time) * lunch_dir
+	if(Input.is_action_just_pressed("dash")):
+		lunch_dir = Vector2(Input.get_action_strength("right") - Input.get_action_strength("left"),Input.get_action_strength("down") - Input.get_action_strength("up"))
+		lunch_dir = -lunch_dir.normalized()
+		rise()
 
 func _physics_process(delta: float) -> void:
 	$flames.emitting = not $flamestime.is_stopped()

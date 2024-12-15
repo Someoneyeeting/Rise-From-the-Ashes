@@ -70,8 +70,8 @@ position = Vector2(75, 540)
 position = Vector2(539.716, 112.705)
 
 [node name="label" type="Label" parent="."]
-offset_left = 31.498
-offset_top = 99.5337
-offset_right = 71.498
-offset_bottom = 122.534
+offset_left = 75.3632
+offset_top = 84.2738
+offset_right = 115.363
+offset_bottom = 107.274
 script = ExtResource("4_25t2y")
