@@ -43,6 +43,7 @@ func _handle_jump():
 		%cyote.start()
 	if(%cyote.time_left > 0 and %buffer.time_left > 0):
 		jump()
+
 ##################
 
 
@@ -103,14 +104,17 @@ func rise():
 	Particalhandler.emit("explosion",global_position)
 
 func _handle_dash():
+	if(Input.is_action_just_pressed("dash")):
+		$dash.start()
 	if(has_dash):
-		if(Input.is_action_just_pressed("dash")):
+		if(Input.is_action_pressed("dash")):
 			lunch_dir = Vector2(Input.get_action_strength("right") - Input.get_action_strength("left"),Input.get_action_strength("down") - Input.get_action_strength("up"))
 			lunch_dir = -lunch_dir.normalized()
 			rise()
 			has_dash = false
 
 func rising():
+	
 	velocity = -lerp(rising_finish_speed,rising_speed,$rising.time_left / $rising.wait_time) * lunch_dir
 		
 	if(get_real_velocity().length() <= 0.2):
@@ -139,12 +143,15 @@ func _physics_process(delta: float) -> void:
 		normal_move()
 	else:
 		rising()
+		
+	$minorframes.emitting = has_dash
 	move_and_slide()
 
 
 func _on_firedetect_area_entered(area: Area2D) -> void:
 	if(area.is_in_group("fire")):
-		_handle_launch(area)
+		if(area.on_fire):
+			_handle_launch(area)
 	if(area.is_in_group("dash")):
 		has_dash = true
 		CameraHandler.shake(0.2)

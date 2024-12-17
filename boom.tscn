@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://1nvupkyawnst"]
+
+[sub_resource type="Curve" id="Curve_xgske"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.266667, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dxjqh"]
+curve = SubResource("Curve_xgske")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c18u4"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 134.41
+initial_velocity_max = 372.38
+gravity = Vector3(0, 0, 0)
+damping_max = 25.482
+scale_max = 2.2
+scale_curve = SubResource("CurveTexture_dxjqh")
+
+[node name="boom" type="GPUParticles2D"]
+emitting = false
+amount = 60
+process_material = SubResource("ParticleProcessMaterial_c18u4")
+lifetime = 2.0
+one_shot = true
+preprocess = 0.4
+explosiveness = 0.98
+trail_enabled = true
+trail_lifetime = 0.13

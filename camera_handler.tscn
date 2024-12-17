@@ -5,8 +5,5 @@
 [node name="CameraHandler" type="Node2D"]
 script = ExtResource("1_54ubd")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-
 [node name="shake" type="Timer" parent="."]
 one_shot = true

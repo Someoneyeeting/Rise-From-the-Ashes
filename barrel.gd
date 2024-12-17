@@ -2,12 +2,15 @@ extends CharacterBody2D
 
 
 var prevspeed :float= 0
+var to_break := false
 
 func _physics_process(delta: float) -> void:
 	velocity.y += 30
 	#if(get_real_velocity().y > 0):
 		#get_real_velocity().x /= 2
-	if(prevspeed - get_real_velocity().y >= 900):
+	if(get_real_velocity().y >= 800):
+		to_break = true
+	if(get_real_velocity().y <= 3 and to_break):
 		explode()
 	prevspeed = get_real_velocity().y
 	velocity.x /= 1.4

@@ -6,11 +6,12 @@
 radius = 30.7621
 
 [node name="Dashorb" type="Area2D" groups=["dash"]]
+scale = Vector2(1.35922, 1.35922)
 script = ExtResource("1_88qbm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_633ta")
 
 [node name="disable" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.0
 one_shot = true
