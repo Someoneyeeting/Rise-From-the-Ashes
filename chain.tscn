@@ -32,78 +32,103 @@ scale = Vector2(17.2251, 3.09443)
 
 [node name="barrel" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(333.99, 542.653)
+is_static = true
 
 [node name="barrel2" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(353.822, 542.653)
+is_static = true
 
 [node name="barrel3" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(373.104, 542.653)
+is_static = true
 
 [node name="barrel4" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(392.937, 542.653)
+is_static = true
 
 [node name="barrel5" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(412.039, 542.653)
+is_static = true
 
 [node name="barrel6" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(431.872, 542.653)
+is_static = true
 
 [node name="barrel7" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(451.154, 542.653)
+is_static = true
 
 [node name="barrel8" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(469.987, 542.653)
+is_static = true
 
 [node name="barrel9" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(489.887, 542.653)
+is_static = true
 
 [node name="barrel10" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 542.653)
+is_static = true
 
 [node name="barrel11" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 522.424)
+is_static = true
 
 [node name="barrel12" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 502.449)
+is_static = true
 
 [node name="barrel13" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 482.22)
+is_static = true
 
 [node name="barrel14" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 462.653)
+is_static = true
 
 [node name="barrel15" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 442.424)
+is_static = true
 
 [node name="barrel16" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 422.449)
+is_static = true
 
 [node name="barrel17" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 402.22)
+is_static = true
 
 [node name="barrel18" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 381.449)
+is_static = true
 
 [node name="barrel19" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 361.22)
+is_static = true
 
 [node name="barrel20" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 341.653)
+is_static = true
 
 [node name="barrel21" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 321.424)
+is_static = true
 
 [node name="barrel22" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 301.449)
+is_static = true
 
 [node name="barrel23" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 281.22)
+is_static = true
 
 [node name="barrel24" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 261.424)
+is_static = true
 
 [node name="barrel25" parent="." instance=ExtResource("2_ce6xe")]
 position = Vector2(509.72, 241.449)
+is_static = true
 
 [node name="Fire" parent="." instance=ExtResource("3_tppby")]
 position = Vector2(544.747, 228.433)

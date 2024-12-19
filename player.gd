@@ -34,17 +34,30 @@ var last_launch : Node2D
 
 var has_dash := false
 
+var wall_jump = 0
+var wall_jump_factor = 1
 
 ######jump######
 func jump():
-	velocity.y = min(-jumpheight,velocity.y)
+	if(wall_jump == 0):
+		velocity.y = min(-jumpheight,velocity.y)
 	%cyote.stop()
 	%buffer.stop()
 	
 
+func _wall_jump():
+	velocity.y = min(-jumpheight * wall_jump_factor,velocity.y)
+	velocity.x = -wall_jump * 500 * wall_jump_factor
+	wall_jump_factor -= 0.1
+	if(wall_jump_factor < 0.6):
+		wall_jump_factor = 0
+
 func _handle_jump():
+	_check_for_wall()
 	if(Input.is_action_pressed("jump")):
 		%buffer.start()
+	if(wall_jump != 0 and Input.is_action_just_pressed("jump")):
+		_wall_jump()
 	if(is_on_floor()):
 		if(velocity.y > 0):
 			velocity.y = 0
@@ -71,7 +84,7 @@ func _handle_falling():
 	if(velocity.y < 0):
 		velocity.y += 18
 	else:
-		if(is_on_wall_only()):
+		if(wall_jump != 0):
 			velocity.y = min(wall_slide_speed,velocity.y)
 			velocity.y += 10
 		elif(velocity.y < max_fall_speed):
@@ -111,11 +124,28 @@ func normal_move():
 
 #####rising#####
 func rise():
+	wall_jump_factor = 1
 	$rising.start()
 	$flamestime.start()
 	CameraHandler.shake(0.13,lunch_dir * 30)
 	$AudioStreamPlayer.play()
 	Particalhandler.emit("explosion",global_position)
+
+func _check_for_wall():
+	if(is_on_floor()): wall_jump_factor = 1
+	if(not is_on_wall_only()) : return
+	if(Input.is_action_pressed("right")):
+		for i in $walldetect/right.get_overlapping_bodies():
+			if i.is_in_group("solid"):
+				wall_jump = 1
+				$wall_jump.start()
+				break
+	elif(Input.is_action_pressed("left")):
+		for i in $walldetect/left.get_overlapping_bodies():
+			if i.is_in_group("solid"):
+				$wall_jump.start()
+				wall_jump = -1
+				break
 
 func _handle_dash():
 	if(Input.is_action_just_pressed("dash")):
@@ -162,7 +192,7 @@ func _physics_process(delta: float) -> void:
 	_handle_jump()
 	
 	_handle_dash()
-	
+	print(wall_jump)
 	$ColorRect.color = (dash_color if(has_dash or $rising.time_left > 0) else no_dash_color)
 	
 	#$fire/.disabled = $rising.time_left > 0
@@ -193,3 +223,7 @@ func _on_firedetect_area_entered(area: Area2D) -> void:
 
 func _on_pause_timeout() -> void:
 	get_tree().paused = false
+
+
+func _on_wall_jump_timeout() -> void:
+	wall_jump = 0

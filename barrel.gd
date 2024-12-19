@@ -4,8 +4,12 @@ extends CharacterBody2D
 var prevspeed :float= 0
 var to_break := false
 
+@export
+var is_static = false
+
 func _physics_process(delta: float) -> void:
-	velocity.y += 30
+	if(not is_static):
+		velocity.y += 30
 	#if(get_real_velocity().y > 0):
 		#get_real_velocity().x /= 2
 	if(get_real_velocity().y >= 800):
