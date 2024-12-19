@@ -81,7 +81,7 @@ turbulence_initial_displacement_max = 1.49012e-06
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kj1i6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1qrky"]
-radius = 71.1969
+radius = 34.0588
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_6ogng")

@@ -127,7 +127,6 @@ func _handle_explosions():
 		print(i.name)
 		if i.is_in_group("fire"):
 			i.turn_on()
-			print("eh")
 	
 func rising():
 	
