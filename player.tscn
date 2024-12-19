@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5fcsyr0qilmn"]
+[gd_scene load_steps=11 format=3 uid="uid://c5fcsyr0qilmn"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6ogng"]
 
@@ -80,6 +80,9 @@ turbulence_initial_displacement_max = 1.49012e-06
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kj1i6"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1qrky"]
+radius = 71.1969
+
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_6ogng")
 speed = 50.0
@@ -87,6 +90,8 @@ jumpheight = 400.0
 rising_speed = 1200.0
 rising_finish_speed = 300.0
 max_fall_speed = 850.0
+dash_color = Color(0.705882, 0.231373, 0.156863, 1)
+no_dash_color = Color(0.345098, 0.384314, 0.47451, 1)
 
 [node name="flames" type="GPUParticles2D" parent="."]
 emitting = false
@@ -142,6 +147,18 @@ one_shot = true
 [node name="dash" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 33.0
+offset_bottom = 33.0
+scale = Vector2(0.469055, 0.469055)
+
+[node name="fire" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fire"]
+shape = SubResource("CircleShape2D_1qrky")
 
 [connection signal="area_entered" from="firedetect" to="." method="_on_firedetect_area_entered"]
 [connection signal="timeout" from="pause" to="." method="_on_pause_timeout"]

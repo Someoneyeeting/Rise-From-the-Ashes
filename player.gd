@@ -20,6 +20,12 @@ var max_speed : float = 300
 var max_fall_speed : float = 20
 
 
+@export
+var dash_color : Color = Color.WHITE
+@export
+var no_dash_color : Color = Color.WHITE
+
+
 var lunch_dir : Vector2
 
 var last_launch : Node2D
@@ -29,7 +35,7 @@ var has_dash := false
 
 ######jump######
 func jump():
-	velocity.y = -jumpheight
+	velocity.y = min(-jumpheight,velocity.y)
 	%cyote.stop()
 	%buffer.stop()
 	
@@ -52,7 +58,7 @@ func _handle_push_objects():
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-		
+		if(not collider): continue
 		if collider.is_in_group("pushable"):
 			var collision_normal = collision.get_normal()
 			if abs(collision_normal.y) < 0.1: #ensuring player is not on top or bottom of the block
@@ -78,7 +84,10 @@ func _handle_movement():
 	else:
 		move_speed = -velocity.x / 2
 	
-	velocity.x += move_speed
+	if(is_on_floor()):
+		velocity.x += move_speed
+	else:
+		velocity.x += move_speed * 0.6
 
 func normal_move():
 	last_launch = null
@@ -113,9 +122,17 @@ func _handle_dash():
 			rise()
 			has_dash = false
 
+func _handle_explosions():
+	for i in $fire.get_overlapping_bodies():
+		print(i.name)
+		if i.is_in_group("fire"):
+			i.turn_on()
+			print("eh")
+	
 func rising():
 	
 	velocity = -lerp(rising_finish_speed,rising_speed,$rising.time_left / $rising.wait_time) * lunch_dir
+	_handle_explosions()
 		
 	if(get_real_velocity().length() <= 0.2):
 		$rising.stop()
@@ -129,6 +146,9 @@ func _handle_launch(i):
 	$flames.global_rotation = i.global_rotation
 	global_position = i.global_position
 	rise()
+
+
+
 ################
 
 
@@ -138,6 +158,11 @@ func _physics_process(delta: float) -> void:
 	_handle_jump()
 	
 	_handle_dash()
+	
+	$ColorRect.color = (dash_color if(has_dash or $rising.time_left > 0) else no_dash_color)
+	
+	#$fire/.disabled = $rising.time_left > 0
+	
 	
 	if($rising.is_stopped()):
 		normal_move()
@@ -157,6 +182,8 @@ func _on_firedetect_area_entered(area: Area2D) -> void:
 		CameraHandler.shake(0.2)
 		get_tree().paused = true 
 		$pause.start()
+		if(velocity.y > 0):
+			velocity.y /= 2
 		area.take()
 
 

@@ -1,13 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://pc5wtqu8b405"]
+[gd_scene load_steps=5 format=3 uid="uid://pc5wtqu8b405"]
 
 [ext_resource type="Script" path="res://dashorb.gd" id="1_88qbm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_633ta"]
 radius = 30.7621
 
+[sub_resource type="Shader" id="Shader_pwoqd"]
+code = "shader_type canvas_item;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	if(distance(UV,vec2(0.5,0.5)) > 0.5)
+		COLOR.a = 0.0;
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y3jf6"]
+shader = SubResource("Shader_pwoqd")
+
 [node name="Dashorb" type="Area2D" groups=["dash"]]
+z_index = -1
 scale = Vector2(1.35922, 1.35922)
 script = ExtResource("1_88qbm")
+dash_color = Color(1, 0.584314, 0.215686, 1)
+no_dash_color = Color(0.164706, 0.254902, 0.352941, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_633ta")
@@ -15,3 +39,11 @@ shape = SubResource("CircleShape2D_633ta")
 [node name="disable" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_y3jf6")
+offset_left = -31.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 31.0
+color = Color(0.73, 0.504917, 0.1898, 1)

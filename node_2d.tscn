@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccpwej3kwaens"]
+[gd_scene load_steps=6 format=3 uid="uid://ccpwej3kwaens"]
 
 [ext_resource type="PackedScene" uid="uid://7bloetcae2wd" path="res://wall.tscn" id="1_jj2wg"]
 [ext_resource type="PackedScene" uid="uid://c5fcsyr0qilmn" path="res://player.tscn" id="1_yaku2"]
 [ext_resource type="PackedScene" uid="uid://cqhqcmlysjg7f" path="res://camera_2d.tscn" id="4_tqfo8"]
+[ext_resource type="PackedScene" uid="uid://bngwplhy6ptwg" path="res://barrel.tscn" id="5_5b70l"]
 [ext_resource type="PackedScene" uid="uid://pc5wtqu8b405" path="res://dashorb.tscn" id="5_qi64t"]
 
 [node name="Node2D" type="Node2D"]
@@ -11,15 +12,15 @@
 position = Vector2(22.6274, 115.966)
 
 [node name="wall" parent="Node2D" instance=ExtResource("1_jj2wg")]
-position = Vector2(425.586, 724.397)
+position = Vector2(516.403, 724.397)
 scale = Vector2(63.1296, 2.24679)
 
 [node name="wall7" parent="Node2D" instance=ExtResource("1_jj2wg")]
-position = Vector2(1993.31, 717.298)
+position = Vector2(2084.13, 717.298)
 scale = Vector2(56.6896, 2.24679)
 
 [node name="wall3" parent="Node2D" instance=ExtResource("1_jj2wg")]
-position = Vector2(98.9819, 414.886)
+position = Vector2(78.9819, 414.886)
 scale = Vector2(6.8643, 2.0431)
 
 [node name="wall9" parent="Node2D" instance=ExtResource("1_jj2wg")]
@@ -32,7 +33,7 @@ rotation = 1.5708
 scale = Vector2(16.062, 1.73323)
 
 [node name="wall12" parent="Node2D" instance=ExtResource("1_jj2wg")]
-position = Vector2(1157.24, -11.6431)
+position = Vector2(1154.24, -58.9155)
 rotation = 1.5708
 scale = Vector2(45.1043, 2.0431)
 
@@ -41,7 +42,7 @@ position = Vector2(639.982, 180.886)
 scale = Vector2(29.7043, 2.0431)
 
 [node name="wall13" parent="Node2D" instance=ExtResource("1_jj2wg")]
-position = Vector2(1628.01, 520.107)
+position = Vector2(1628.01, 482.009)
 scale = Vector2(38.0243, 2.0431)
 
 [node name="wall8" parent="Node2D" instance=ExtResource("1_jj2wg")]
@@ -76,12 +77,12 @@ rotation = 2.35619
 scale = Vector2(8.04903, 1.43189)
 
 [node name="wall16" parent="Node2D" instance=ExtResource("1_jj2wg")]
-position = Vector2(1201.54, 476.048)
+position = Vector2(1201.54, 437.95)
 rotation = 3.92699
 scale = Vector2(8.04903, 1.43189)
 
 [node name="Dashorb" parent="." instance=ExtResource("5_qi64t")]
-position = Vector2(362.155, 658.558)
+position = Vector2(321.792, 672.012)
 
 [node name="player" parent="." instance=ExtResource("1_yaku2")]
 position = Vector2(27.4551, 786.241)
@@ -91,4 +92,52 @@ rising_finish_speed = 500.0
 zoom = Vector2(0.64, 0.64)
 
 [node name="Dashorb2" parent="." instance=ExtResource("5_qi64t")]
-position = Vector2(1088.85, 414.019)
+position = Vector2(1120.6, 663.241)
+
+[node name="barrel" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(432.255, 803.106)
+
+[node name="barrel2" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(454.255, 803.106)
+
+[node name="barrel3" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(475.255, 803.106)
+
+[node name="barrel4" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(497.255, 803.106)
+
+[node name="barrel5" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(520.255, 803.106)
+
+[node name="barrel6" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(542.255, 803.106)
+
+[node name="barrel7" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(563.255, 803.106)
+
+[node name="barrel8" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(585.255, 803.106)
+
+[node name="barrel9" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(605.255, 803.106)
+
+[node name="barrel10" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(627.255, 803.106)
+
+[node name="barrel11" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(648.255, 803.106)
+
+[node name="barrel12" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(670.255, 803.106)
+
+[node name="barrel13" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(693.255, 803.106)
+
+[node name="barrel14" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(715.255, 803.106)
+
+[node name="barrel15" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(736.255, 803.106)
+
+[node name="barrel16" parent="." instance=ExtResource("5_5b70l")]
+position = Vector2(758.255, 803.106)

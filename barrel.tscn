@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_38j83"]
 radius = 55.821
 
-[node name="barrel" type="CharacterBody2D" groups=["pushable"]]
+[node name="barrel" type="CharacterBody2D" groups=["fire", "pushable"]]
 script = ExtResource("1_y80ug")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -17,3 +17,10 @@ shape = SubResource("RectangleShape2D_0dsts")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_38j83")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0.496094, 0.317794, 0.238715, 1)
