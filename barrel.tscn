@@ -14,6 +14,7 @@ script = ExtResource("1_y80ug")
 shape = SubResource("RectangleShape2D_0dsts")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_38j83")

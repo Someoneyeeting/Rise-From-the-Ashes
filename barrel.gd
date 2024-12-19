@@ -22,8 +22,19 @@ func turn_on():
 	explode()
 
 
-func explode():
+func _check_ray(body):
+	var state = get_world_2d().direct_space_state
+	var param = PhysicsRayQueryParameters2D.new()
+	param.from = global_position
+	param.to = body.global_position
+	param.exclude = [self,body]
+	var col = state.intersect_ray(param)
 	
+	if(col.is_empty()):
+		return true
+	return false
+
+func explode():
 	CameraHandler.shake()
 	for i in $Area2D.get_overlapping_bodies():
 		if(i.is_in_group("fire")):

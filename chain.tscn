@@ -1,0 +1,119 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbe6ketj12peq"]
+
+[ext_resource type="PackedScene" uid="uid://cqhqcmlysjg7f" path="res://camera_2d.tscn" id="1_g8xro"]
+[ext_resource type="PackedScene" uid="uid://7bloetcae2wd" path="res://wall.tscn" id="1_rmwk7"]
+[ext_resource type="PackedScene" uid="uid://bngwplhy6ptwg" path="res://barrel.tscn" id="2_ce6xe"]
+[ext_resource type="PackedScene" uid="uid://xl2c3slxjx3o" path="res://fire.tscn" id="3_tppby"]
+[ext_resource type="PackedScene" uid="uid://c5fcsyr0qilmn" path="res://player.tscn" id="4_2286s"]
+[ext_resource type="PackedScene" uid="uid://pc5wtqu8b405" path="res://dashorb.tscn" id="5_vsfxi"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" parent="." instance=ExtResource("1_g8xro")]
+position = Vector2(0, -130.167)
+
+[node name="wall" parent="." instance=ExtResource("1_rmwk7")]
+position = Vector2(117.519, 655.241)
+scale = Vector2(46.4487, 10.2461)
+
+[node name="wall4" parent="." instance=ExtResource("1_rmwk7")]
+position = Vector2(1594.51, 655.241)
+scale = Vector2(46.4487, 10.2461)
+
+[node name="wall2" parent="." instance=ExtResource("1_rmwk7")]
+position = Vector2(412.215, 382.181)
+rotation = 1.5708
+scale = Vector2(15, 8.7)
+
+[node name="wall3" parent="." instance=ExtResource("1_rmwk7")]
+position = Vector2(550.557, 403.757)
+rotation = 1.5708
+scale = Vector2(17.2251, 3.09443)
+
+[node name="barrel" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(333.99, 542.653)
+
+[node name="barrel2" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(353.822, 542.653)
+
+[node name="barrel3" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(373.104, 542.653)
+
+[node name="barrel4" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(392.937, 542.653)
+
+[node name="barrel5" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(412.039, 542.653)
+
+[node name="barrel6" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(431.872, 542.653)
+
+[node name="barrel7" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(451.154, 542.653)
+
+[node name="barrel8" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(469.987, 542.653)
+
+[node name="barrel9" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(489.887, 542.653)
+
+[node name="barrel10" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 542.653)
+
+[node name="barrel11" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 522.424)
+
+[node name="barrel12" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 502.449)
+
+[node name="barrel13" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 482.22)
+
+[node name="barrel14" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 462.653)
+
+[node name="barrel15" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 442.424)
+
+[node name="barrel16" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 422.449)
+
+[node name="barrel17" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 402.22)
+
+[node name="barrel18" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 381.449)
+
+[node name="barrel19" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 361.22)
+
+[node name="barrel20" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 341.653)
+
+[node name="barrel21" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 321.424)
+
+[node name="barrel22" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 301.449)
+
+[node name="barrel23" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 281.22)
+
+[node name="barrel24" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 261.424)
+
+[node name="barrel25" parent="." instance=ExtResource("2_ce6xe")]
+position = Vector2(509.72, 241.449)
+
+[node name="Fire" parent="." instance=ExtResource("3_tppby")]
+position = Vector2(544.747, 228.433)
+on_fire = false
+
+[node name="player" parent="." instance=ExtResource("4_2286s")]
+position = Vector2(51.0876, 528.424)
+
+[node name="Dashorb" parent="." instance=ExtResource("5_vsfxi")]
+position = Vector2(272.939, 431.1)
+
+[node name="Dashorb2" parent="." instance=ExtResource("5_vsfxi")]
+position = Vector2(789.493, 61.0703)
