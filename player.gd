@@ -19,6 +19,8 @@ var max_speed : float = 300
 @export
 var max_fall_speed : float = 20
 
+@export
+var wall_slide_speed : float = 300
 
 @export
 var dash_color : Color = Color.WHITE
@@ -69,7 +71,10 @@ func _handle_falling():
 	if(velocity.y < 0):
 		velocity.y += 18
 	else:
-		if(velocity.y < max_fall_speed):
+		if(is_on_wall_only()):
+			velocity.y = min(wall_slide_speed,velocity.y)
+			velocity.y += 10
+		elif(velocity.y < max_fall_speed):
 			velocity.y += 23
 
 func _handle_movement():

@@ -90,6 +90,7 @@ jumpheight = 400.0
 rising_speed = 1200.0
 rising_finish_speed = 300.0
 max_fall_speed = 850.0
+wall_slide_speed = 100.0
 dash_color = Color(0.705882, 0.231373, 0.156863, 1)
 no_dash_color = Color(0.345098, 0.384314, 0.47451, 1)
 
