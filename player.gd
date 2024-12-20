@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 
@@ -159,7 +160,6 @@ func _handle_dash():
 
 func _handle_explosions():
 	for i in $fire.get_overlapping_bodies():
-		print(i.name)
 		if i.is_in_group("fire"):
 			i.turn_on()
 	
@@ -169,10 +169,15 @@ func rising():
 	_handle_explosions()
 		
 	if(get_real_velocity().length() <= 0.2):
+		Particalhandler.emit("explosion",global_position)
 		$rising.stop()
 	if(Input.is_action_just_pressed("jump")):
+		Particalhandler.emit("explosion",global_position)
 		$rising.stop()
-		jump()
+		if(wall_jump == 0):
+			jump()
+		else:
+			_wall_jump()
 
 
 func _handle_launch(i):
@@ -192,7 +197,6 @@ func _physics_process(delta: float) -> void:
 	_handle_jump()
 	
 	_handle_dash()
-	print(wall_jump)
 	$ColorRect.color = (dash_color if(has_dash or $rising.time_left > 0) else no_dash_color)
 	
 	#$fire/.disabled = $rising.time_left > 0

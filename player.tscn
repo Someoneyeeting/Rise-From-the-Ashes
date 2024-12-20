@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5fcsyr0qilmn"]
+[gd_scene load_steps=22 format=3 uid="uid://c5fcsyr0qilmn"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6ogng"]
+[ext_resource type="Texture2D" uid="uid://cu3qin4y28ixd" path="res://assets/pheonix_idle.png" id="2_ec43s"]
 
 [sub_resource type="Curve" id="Curve_hw5du"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.866667, 0), 0.0, 0.0, 0, 0]
@@ -85,6 +86,70 @@ radius = 34.0588
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vemy7"]
 size = Vector2(2.135, 19.844)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6q46e"]
+atlas = ExtResource("2_ec43s")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk1lg"]
+atlas = ExtResource("2_ec43s")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b8kn"]
+atlas = ExtResource("2_ec43s")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3qpf"]
+atlas = ExtResource("2_ec43s")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tnvn"]
+atlas = ExtResource("2_ec43s")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bscfi"]
+atlas = ExtResource("2_ec43s")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4r7c"]
+atlas = ExtResource("2_ec43s")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3rsb"]
+atlas = ExtResource("2_ec43s")
+region = Rect2(48, 96, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6mxkb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6q46e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk1lg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3b8kn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3qpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tnvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bscfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4r7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3rsb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_6ogng")
@@ -182,6 +247,16 @@ shape = SubResource("RectangleShape2D_vemy7")
 [node name="wall_jump" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="PheonixBro" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-0.414431, -1.79734)
+scale = Vector2(1.17678, 1.17678)
+sprite_frames = SubResource("SpriteFrames_6mxkb")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.250102
+speed_scale = 0.5
 
 [connection signal="area_entered" from="firedetect" to="." method="_on_firedetect_area_entered"]
 [connection signal="timeout" from="pause" to="." method="_on_pause_timeout"]

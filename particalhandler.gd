@@ -1,8 +1,8 @@
 extends Node2D
 
 var parts = {
-	"explosion" : preload("res://explosion.tscn"),
-	"boom" : preload("res://boom.tscn")
+	"explosion" : preload("res://particles/explosion.tscn"),
+	"boom" : preload("res://particles/boom.tscn")
 }
 
 func clean():
