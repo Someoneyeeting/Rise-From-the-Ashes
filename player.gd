@@ -47,6 +47,7 @@ func jump():
 	
 
 func _wall_jump():
+	LevelManger.start_moving()
 	velocity.y = min(-jumpheight * wall_jump_factor,velocity.y)
 	velocity.x = -wall_jump * 500 * wall_jump_factor
 	wall_jump_factor -= 0.1
@@ -95,6 +96,7 @@ func _handle_movement():
 	var move := Input.get_action_strength("right") - Input.get_action_strength("left")
 	var move_speed = move * speed
 	if(move != 0):
+		LevelManger.start_moving()
 		if(sign(move) != sign(velocity.x)):
 			move_speed *= 2.4
 		else:

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://level_manger.gd" id="1_0iq53"]
 [ext_resource type="PackedScene" uid="uid://dybub2e8c5acg" path="res://timer_manger.tscn" id="2_vbynv"]
-[ext_resource type="AudioStream" uid="uid://5rhm72g1218d" path="res://pheonix game ost or smth.mp3" id="3_hcaop"]
+[ext_resource type="AudioStream" uid="uid://dln6riynxfsqs" path="res://crow.wav" id="3_h2erb"]
 
 [node name="LevelManger" type="Node2D"]
 script = ExtResource("1_0iq53")
@@ -10,5 +10,4 @@ script = ExtResource("1_0iq53")
 [node name="TimerManger" parent="." instance=ExtResource("2_vbynv")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_hcaop")
-pitch_scale = 0.95
+stream = ExtResource("3_h2erb")

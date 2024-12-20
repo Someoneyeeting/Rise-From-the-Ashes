@@ -205,7 +205,7 @@ one_shot = true
 
 [node name="buffer" type="Timer" parent="jump"]
 unique_name_in_owner = true
-wait_time = 0.1
+wait_time = 0.3
 one_shot = true
 
 [node name="pause" type="Timer" parent="."]

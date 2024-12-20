@@ -6,7 +6,6 @@ var paused := false
 var timer :float=0
 
 
-
 func get_current_time():
 	pass
 
@@ -17,7 +16,10 @@ func get_total_time():
 	pass
 
 func start():
-	pass
+	if(paused):
+		timer = 0
+		unpause()
+		$CanvasLayer/Label.show()
 
 func finish(level):
 	pause()
@@ -35,6 +37,7 @@ func unpause():
 
 
 func _physics_process(delta: float) -> void:
-	timer += delta
+	if(not paused):
+		timer += delta
 	
-	$Label.text = str(int(timer)) + ":" + str(timer - int(timer)).substr(2,2)
+	$CanvasLayer/Label.text = str(int(timer)) + ":" + str(timer - int(timer)).substr(2,2)
