@@ -231,6 +231,7 @@ speed = 50.0
 jumpheight = 400.0
 rising_speed = 1200.0
 rising_finish_speed = 300.0
+max_speed = 350.0
 max_fall_speed = 850.0
 wall_slide_speed = 100.0
 dash_color = Color(0.705882, 0.231373, 0.156863, 1)
@@ -327,9 +328,9 @@ one_shot = true
 position = Vector2(-0.414431, -9.37396)
 scale = Vector2(1.17678, 1.17678)
 sprite_frames = SubResource("SpriteFrames_6mxkb")
-animation = &"dash"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.107165
+frame_progress = 0.304153
 
 [node name="cooldown" type="Timer" parent="."]
 wait_time = 0.3

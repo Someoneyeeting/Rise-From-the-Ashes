@@ -112,14 +112,18 @@ func _handle_movement():
 				move_speed = 0
 	else:
 		move_speed = -velocity.x / 2
-	
+	#print(state)
 	if(is_on_floor()):
-		if(velocity.is_zero_approx()):
+		if(is_zero_approx(velocity.x)):
 			state = "idle"
 		else:
 			state = "running"
 		velocity.x += move_speed
 	else:
+		if(state == "dash" or state == "falling_dash"):
+			state = "falling_dash"
+		else:
+			state = "falling"
 		velocity.x += move_speed * 0.6
 	if(not is_zero_approx(velocity.x)):
 		looking_right = velocity.x > 0
@@ -141,21 +145,32 @@ func normal_move():
 
 ######Animtions######
 func _handle_animation():
-	var rot = 0
+	var rot :float= 0
 	var flip = false
+	var speed :float= 1
 	
 	if(state == "idle"):
 		$PheonixBro.animation = "idle"
 		flip = not looking_right
 	elif(state == "running"):
 		$PheonixBro.animation = "running"
+		speed = abs(velocity.x) / max_speed * 1
+		flip = not looking_right
+	elif(state == "falling"):
 		flip = not looking_right
 	elif(state == "dash"):
 		$PheonixBro.animation = "dash"
-		$PheonixBro.global_rotation = velocity.angle()
+		rot = velocity.angle()
+	elif(state == "falling_dash"):
+		$PheonixBro.animation = "dash"
+		rot = velocity.angle()
 	
+	
+	#$PheonixBro.scale.x = lerp($PheonixBro.scale.x,$PheonixBro.scale.y if flip else -$PheonixBro.scale.y,0.7)
+	#print($PheonixBro.scale.x)
 	$PheonixBro.flip_h = flip
-	$PheonixBro.global_rotation = velocity.angle()
+	$PheonixBro.speed_scale = speed
+	$PheonixBro.global_rotation = lerp($PheonixBro.global_rotation,rot,0.4)
 
 #####rising#####
 func rise():
@@ -214,7 +229,6 @@ func rising():
 			jump()
 		else:
 			_wall_jump()
-	$PheonixBro.global_rotation = velocity.angle()
 
 
 func _handle_launch(i):

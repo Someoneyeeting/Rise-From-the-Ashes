@@ -50,8 +50,7 @@ func win():
 	get_next()
 
 func get_next():
-	current_level += 1
-	load_level()
+	switch_level(current_level + 1)
 
 func is_level_passed(level : int):
 	return false
