@@ -1,8 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://c5fcsyr0qilmn"]
+[gd_scene load_steps=37 format=3 uid="uid://c5fcsyr0qilmn"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6ogng"]
 [ext_resource type="Texture2D" uid="uid://cu3qin4y28ixd" path="res://assets/pheonix_idle.png" id="2_ec43s"]
+[ext_resource type="Texture2D" uid="uid://2qfm1kspkr82" path="res://assets/pheonix_dash_spritesheet.png" id="2_hqf8s"]
 [ext_resource type="AudioStream" uid="uid://bnuhcksmw5if5" path="res://audio/undet/hitHurt.wav" id="3_dkswt"]
+[ext_resource type="Texture2D" uid="uid://bjrvldpo5rj60" path="res://assets/pheonix_run_spritesheet.png" id="4_12nwq"]
 [ext_resource type="AudioStream" uid="uid://p13bxt1xnoij" path="res://audio/undet/click.wav" id="4_l583a"]
 [ext_resource type="AudioStream" uid="uid://duqel6bp38h6t" path="res://audio/undet/explosion.wav" id="5_trgde"]
 [ext_resource type="AudioStream" uid="uid://coy7alibqvy1b" path="res://audio/undet/land.wav" id="5_v871l"]
@@ -92,6 +94,22 @@ radius = 34.0588
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vemy7"]
 size = Vector2(2.135, 19.844)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pce73"]
+atlas = ExtResource("2_hqf8s")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_355ps"]
+atlas = ExtResource("2_hqf8s")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qwt3"]
+atlas = ExtResource("2_hqf8s")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8jio"]
+atlas = ExtResource("2_hqf8s")
+region = Rect2(48, 48, 48, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_6q46e"]
 atlas = ExtResource("2_ec43s")
 region = Rect2(0, 0, 48, 48)
@@ -124,8 +142,41 @@ region = Rect2(0, 96, 48, 48)
 atlas = ExtResource("2_ec43s")
 region = Rect2(48, 96, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kko1o"]
+atlas = ExtResource("4_12nwq")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfjae"]
+atlas = ExtResource("4_12nwq")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1bt3"]
+atlas = ExtResource("4_12nwq")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h66k"]
+atlas = ExtResource("4_12nwq")
+region = Rect2(48, 48, 48, 48)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_6mxkb"]
 animations = [{
+"frames": [{
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_pce73")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_355ps")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_1qwt3")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_u8jio")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6q46e")
@@ -154,9 +205,27 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_kko1o")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_mfjae")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_q1bt3")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_0h66k")
+}],
+"loop": true,
+"name": &"running",
+"speed": 5.0
 }]
 
 [node name="player" type="CharacterBody2D"]
+scale = Vector2(1.45758, 1.45758)
 script = ExtResource("1_6ogng")
 speed = 50.0
 jumpheight = 400.0
@@ -223,6 +292,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -10.0
 offset_top = -10.0
 offset_right = 33.0
@@ -254,14 +324,12 @@ wait_time = 0.2
 one_shot = true
 
 [node name="PheonixBro" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(-0.414431, -1.79734)
+position = Vector2(-0.414431, -9.37396)
 scale = Vector2(1.17678, 1.17678)
 sprite_frames = SubResource("SpriteFrames_6mxkb")
-animation = &"idle"
+animation = &"dash"
 autoplay = "idle"
-frame_progress = 0.250102
-speed_scale = 0.5
+frame_progress = 0.107165
 
 [node name="cooldown" type="Timer" parent="."]
 wait_time = 0.3

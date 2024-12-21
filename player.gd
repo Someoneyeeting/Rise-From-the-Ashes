@@ -38,6 +38,8 @@ var has_dash := false
 var wall_jump = 0
 var wall_jump_factor = 1
 var was_on_floor := false
+var looking_right := true
+var state = ""
 
 ######jump######
 func jump():
@@ -112,9 +114,15 @@ func _handle_movement():
 		move_speed = -velocity.x / 2
 	
 	if(is_on_floor()):
+		if(velocity.is_zero_approx()):
+			state = "idle"
+		else:
+			state = "running"
 		velocity.x += move_speed
 	else:
 		velocity.x += move_speed * 0.6
+	if(not is_zero_approx(velocity.x)):
+		looking_right = velocity.x > 0
 
 func normal_move():
 	last_launch = null
@@ -130,6 +138,24 @@ func normal_move():
 
 ##################
 
+
+######Animtions######
+func _handle_animation():
+	var rot = 0
+	var flip = false
+	
+	if(state == "idle"):
+		$PheonixBro.animation = "idle"
+		flip = not looking_right
+	elif(state == "running"):
+		$PheonixBro.animation = "running"
+		flip = not looking_right
+	elif(state == "dash"):
+		$PheonixBro.animation = "dash"
+		$PheonixBro.global_rotation = velocity.angle()
+	
+	$PheonixBro.flip_h = flip
+	$PheonixBro.global_rotation = velocity.angle()
 
 #####rising#####
 func rise():
@@ -174,6 +200,7 @@ func _handle_explosions():
 	
 func rising():
 	
+	state = "dash"
 	velocity = -lerp(rising_finish_speed,rising_speed,$rising.time_left / $rising.wait_time) * lunch_dir
 	_handle_explosions()
 		
@@ -187,6 +214,7 @@ func rising():
 			jump()
 		else:
 			_wall_jump()
+	$PheonixBro.global_rotation = velocity.angle()
 
 
 func _handle_launch(i):
@@ -206,7 +234,7 @@ func _physics_process(delta: float) -> void:
 		return
 	$flames.emitting = not $flamestime.is_stopped()
 	_handle_jump()
-	
+	_handle_animation()
 	_handle_dash()
 	$ColorRect.color = (dash_color if(has_dash or $rising.time_left > 0) else no_dash_color)
 	
