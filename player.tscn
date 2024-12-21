@@ -357,8 +357,9 @@ one_shot = true
 position = Vector2(-2.23159, -5.01278)
 scale = Vector2(0.907501, 0.899292)
 sprite_frames = SubResource("SpriteFrames_6mxkb")
-animation = &"falling"
+animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.795696
 
 [node name="cooldown" type="Timer" parent="."]
 wait_time = 0.3

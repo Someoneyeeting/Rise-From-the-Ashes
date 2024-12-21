@@ -28,6 +28,8 @@ var dash_color : Color = Color.WHITE
 @export
 var no_dash_color : Color = Color.WHITE
 
+@onready
+var ogScale :Vector2=scale
 
 var lunch_dir : Vector2
 
@@ -148,6 +150,7 @@ func normal_move():
 
 
 ######Animtions######
+
 func _handle_animation():
 	var rot :float= 0
 	var flip = false
@@ -176,17 +179,17 @@ func _handle_animation():
 	
 	
 	if(state in ["idle","running"]):
-		sc = lerp(1.0,0.9,abs(velocity.length()/max_speed))
+		sc = lerp(1.,0.9,abs(velocity.length()/max_speed))
 	elif(state in ["dash","dash_falling"]):
-		sc = lerp(1.0,0.6,abs(velocity.length()/ rising_speed))
+		sc = lerp(1.,0.6,abs(velocity.length()/ rising_speed))
 	else:
-		sc = 1/lerp(1.0,0.85,abs(velocity.y/max_fall_speed))
-		
+		sc = 1/lerp(1.,0.85,abs(velocity.y/max_fall_speed))
+	
 	
 	#$PheonixBro.scale.x = lerp($PheonixBro.scale.x,$PheonixBro.scale.y if flip else -$PheonixBro.scale.y,0.7)
 	#print($PheonixBro.scale.x)
-	$PheonixBro.scale = Vector2(1/sc,sc)
-	$PheonixBro.flip_h = flip
+	$PheonixBro.scale = Vector2(1/sc,sc) * ogScale
+	#$PheonixBro.flip_h = flip
 	$PheonixBro.speed_scale = speed
 	$PheonixBro.global_rotation = lerp($PheonixBro.global_rotation,rot,0.4)
 
