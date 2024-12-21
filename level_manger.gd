@@ -2,7 +2,7 @@ extends Node2D
 
 
 
-var current_level = 0
+var current_level = -1
 
 var has_dash := false
 
@@ -24,15 +24,26 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if(event.is_action_pressed("restart")):
 		restart()
+	
+	if(event.is_action_pressed("fullscreen")):
+		if(DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED):
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 func get_level_name(level):
 	return levelnames[level]
 
 func load_level():
 	pause()
+	$TimerManger.restart()
 	get_tree().change_scene_to_packed.call_deferred(levels[current_level])
 
 func switch_level(level):
+	%clevel.text = str(level + 1) + " / " + str(get_levels_count())
+	
+	%clevel.set_global_position(Vector2(1280,720)/2 - (%clevel.get_rect().size / 2))
+	%clevel.visible = not (level == current_level)
 	current_level = level
 	$AnimationPlayer.play("switch")
 
@@ -60,7 +71,7 @@ func is_level_passed(level : int):
 func get_level_time(level : int):
 	return 0
 
-func getl_level_count():
+func get_levels_count():
 	return levels.size()
 
 func pause():

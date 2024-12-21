@@ -14,6 +14,7 @@ offset_left = 36.0
 offset_top = 34.0
 offset_right = 171.0
 offset_bottom = 80.0
+scale = Vector2(0.458955, 0.431819)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 22
 theme_override_fonts/font = ExtResource("2_2hp4v")

@@ -29,7 +29,7 @@ var dash_color : Color = Color.WHITE
 var no_dash_color : Color = Color.WHITE
 
 @onready
-var ogScale :Vector2=scale
+var ogScale :Vector2= $PheonixBro.scale
 
 var lunch_dir : Vector2
 
@@ -38,7 +38,7 @@ var last_launch : Node2D
 var has_dash := false
 
 var wall_jump = 0
-var wall_jump_factor = 1
+var wall_jumps = 4
 var was_on_floor := false
 var looking_right := true
 var state = ""
@@ -52,14 +52,16 @@ func jump():
 	%buffer.stop()
 	
 
+func _reset_wall_jumps():
+	wall_jumps = 4
+
 func _wall_jump():
+	if(wall_jumps == 0): return
 	LevelManger.start_moving()
 	$sounds/jump.play()
-	velocity.y = min(-jumpheight * wall_jump_factor,velocity.y)
-	velocity.x = -wall_jump * 500 * wall_jump_factor
-	wall_jump_factor -= 0.1
-	if(wall_jump_factor < 0.6):
-		wall_jump_factor = 0
+	velocity.y = min(-jumpheight,velocity.y)
+	velocity.x = -wall_jump * 500
+	wall_jumps -= 1
 
 func _handle_jump():
 	_check_for_wall()
@@ -175,6 +177,8 @@ func _handle_animation():
 		rot = velocity.angle()
 	elif(state == "falling_dash"):
 		$PheonixBro.animation = "dash"
+		if(velocity.y > 100):
+			state = "falling"
 		rot = velocity.angle()
 	
 	
@@ -189,14 +193,14 @@ func _handle_animation():
 	#$PheonixBro.scale.x = lerp($PheonixBro.scale.x,$PheonixBro.scale.y if flip else -$PheonixBro.scale.y,0.7)
 	#print($PheonixBro.scale.x)
 	$PheonixBro.scale = Vector2(1/sc,sc) * ogScale
-	#$PheonixBro.flip_h = flip
+	$PheonixBro.flip_h = flip
 	$PheonixBro.speed_scale = speed
 	$PheonixBro.global_rotation = lerp($PheonixBro.global_rotation,rot,0.4)
 
 #####rising#####
 func rise():
 	$sounds/dash.play()
-	wall_jump_factor = 1
+	_reset_wall_jumps()
 	$rising.start()
 	$flamestime.start()
 	CameraHandler.shake(0.13,lunch_dir * 30)
@@ -204,7 +208,7 @@ func rise():
 	Particalhandler.emit("explosion",global_position)
 
 func _check_for_wall():
-	if(is_on_floor()): wall_jump_factor = 1
+	if(is_on_floor()): _reset_wall_jumps()
 	if(not is_on_wall_only()) : return
 	if(Input.is_action_pressed("right")):
 		for i in $walldetect/right.get_overlapping_bodies():

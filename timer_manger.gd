@@ -27,6 +27,7 @@ func finish(level):
 
 func restart():
 	timer = 0
+	$CanvasLayer/Label.hide()
 	pause()
 
 func pause():
