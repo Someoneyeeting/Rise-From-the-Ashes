@@ -15,8 +15,9 @@ var levelnames = [
 ]
 
 func _ready() -> void:
-	restart()
-	$AudioStreamPlayer.play()
+	#restart()
+	get_tree().current_scene.queue_free()
+	#$AudioStreamPlayer.play()
 
 func _input(event: InputEvent) -> void:
 	if(event.is_action_pressed("restart")):
@@ -25,13 +26,24 @@ func _input(event: InputEvent) -> void:
 func get_level_name(level):
 	return levelnames[level]
 
-func load_level(level : int):
+func load_level():
 	pause()
-	get_tree().change_scene_to_packed.call_deferred(levels[level])
-	
+	get_tree().change_scene_to_packed.call_deferred(levels[current_level])
+
+func switch_level(level):
+	current_level = level
+	$AnimationPlayer.play("switch")
+
+func start_music():
+	if(not $AudioStreamPlayer.playing):
+		$AudioStreamPlayer.play()
+
+func stop_music():
+	$AudioStreamPlayer.stop()
+
 func restart():
 	$TimerManger.restart()
-	load_level(current_level)
+	load_level()
 
 func win():
 	$TimerManger.finish(get_level_name(current_level))
@@ -39,13 +51,16 @@ func win():
 
 func get_next():
 	current_level += 1
-	load_level(current_level)
+	load_level()
 
 func is_level_passed(level : int):
-	pass
+	return false
 
 func get_level_time(level : int):
-	pass
+	return 0
+
+func getl_level_count():
+	return levels.size()
 
 func pause():
 	$TimerManger.pause()

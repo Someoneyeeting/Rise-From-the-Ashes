@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/USA Anthem but it has gunshots, eagles sounds
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
 bpm=169.37
 beat_count=0

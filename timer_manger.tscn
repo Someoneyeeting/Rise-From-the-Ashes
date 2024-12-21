@@ -9,6 +9,7 @@ script = ExtResource("1_ybimj")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
 offset_left = 36.0
 offset_top = 34.0
 offset_right = 171.0

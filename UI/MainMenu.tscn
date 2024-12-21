@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfo6qkbdc3pk8"]
+
+[ext_resource type="Script" path="res://UI/UIMenu.gd" id="1_ju2xb"]
+[ext_resource type="PackedScene" uid="uid://5mfkfjv1f073" path="res://UI/button.tscn" id="2_bdnqi"]
+
+[sub_resource type="GDScript" id="GDScript_s4vvv"]
+script/source = "extends Node2D
+
+
+func _on_button_press() -> void:
+	LevelManger.start_music()
+	LevelManger.load_level(0)
+	owner.manger.close_current()
+"
+
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("buttons")]
+script = ExtResource("1_ju2xb")
+buttons = NodePath("buttons")
+
+[node name="buttons" type="Node2D" parent="."]
+
+[node name="button" parent="buttons" node_paths=PackedStringArray("parentmenu") instance=ExtResource("2_bdnqi")]
+position = Vector2(106, 283)
+parentmenu = NodePath("../..")
+text = "play"
+
+[node name="button2" parent="buttons" node_paths=PackedStringArray("parentmenu") instance=ExtResource("2_bdnqi")]
+position = Vector2(106, 369)
+parentmenu = NodePath("../..")
+text = "settings"
+
+[node name="event" type="Node2D" parent="."]
+script = SubResource("GDScript_s4vvv")
+
+[connection signal="Press" from="buttons/button" to="event" method="_on_button_press"]

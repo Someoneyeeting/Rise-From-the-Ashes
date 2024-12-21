@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnhty64rc6ipv"]
+
+[ext_resource type="Script" path="res://UI/menu_manger.gd" id="1_ainlq"]
+[ext_resource type="AudioStream" uid="uid://cd2p3cmj3ik31" path="res://audio/select.wav" id="3_j6tiu"]
+[ext_resource type="AudioStream" uid="uid://bsbav2hyoan1p" path="res://USA Anthem but it has gunshots, eagles sounds, and patriotism.mp3" id="3_m4jjd"]
+
+[node name="MenuManger" type="Node2D"]
+script = ExtResource("1_ainlq")
+
+[node name="menus" type="Node2D" parent="."]
+
+[node name="press" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_j6tiu")
+volume_db = 0.7
+
+[node name="select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_j6tiu")
+volume_db = -16.325
+pitch_scale = 0.7
+
+[node name="unselect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_m4jjd")

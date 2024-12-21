@@ -84,13 +84,13 @@ func _handle_push_objects():
 
 func _handle_falling():
 	if(velocity.y < 0):
-		velocity.y += 18
+		velocity.y += 20
 	else:
 		if(wall_jump != 0):
 			velocity.y = min(wall_slide_speed,velocity.y)
 			velocity.y += 10
 		elif(velocity.y < max_fall_speed):
-			velocity.y += 23
+			velocity.y += 40
 
 func _handle_movement():
 	var move := Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -195,6 +195,8 @@ func _handle_launch(i):
 
 
 func _physics_process(delta: float) -> void:
+	if(not $cooldown.is_stopped()):
+		return
 	$flames.emitting = not $flamestime.is_stopped()
 	_handle_jump()
 	
