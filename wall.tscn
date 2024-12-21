@@ -1,8 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://7bloetcae2wd"]
+[gd_scene load_steps=3 format=3 uid="uid://7bloetcae2wd"]
+
+[sub_resource type="GDScript" id="GDScript_fckhj"]
+script/source = "extends StaticBody2D
+
+
+@export
+var fire : Color
+
+@export
+var mid : Color
+
+func _physics_process(delta: float) -> void:
+	$ColorRect.color = fire if not LevelManger.has_dash else mid
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2itwx"]
 
 [node name="wall" type="StaticBody2D" groups=["solid"]]
+script = SubResource("GDScript_fckhj")
+fire = Color(0.705882, 0.231373, 0.156863, 1)
+mid = Color(0.120892, 0.120362, 0.705882, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2itwx")

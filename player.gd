@@ -120,10 +120,14 @@ func _handle_movement():
 			state = "running"
 		velocity.x += move_speed
 	else:
-		if(state == "dash" or state == "falling_dash"):
-			state = "falling_dash"
+		if(wall_jump != 0):
+			state = "wall_slide"
 		else:
-			state = "falling"
+			if(state == "dash" or state == "falling_dash"):
+				state = "falling_dash"
+			else:
+				if(wall_jump == 0):
+					state = "falling"
 		velocity.x += move_speed * 0.6
 	if(not is_zero_approx(velocity.x)):
 		looking_right = velocity.x > 0
@@ -148,6 +152,7 @@ func _handle_animation():
 	var rot :float= 0
 	var flip = false
 	var speed :float= 1
+	var sc :float = 1
 	
 	if(state == "idle"):
 		$PheonixBro.animation = "idle"
@@ -157,6 +162,10 @@ func _handle_animation():
 		speed = abs(velocity.x) / max_speed * 1
 		flip = not looking_right
 	elif(state == "falling"):
+		$PheonixBro.animation = "falling"
+		flip = not looking_right
+	elif(state == "wall_slide"):
+		$PheonixBro.animation = "wall_slide"
 		flip = not looking_right
 	elif(state == "dash"):
 		$PheonixBro.animation = "dash"
@@ -166,8 +175,17 @@ func _handle_animation():
 		rot = velocity.angle()
 	
 	
+	if(state in ["idle","running"]):
+		sc = lerp(1.0,0.9,abs(velocity.length()/max_speed))
+	elif(state in ["dash","dash_falling"]):
+		sc = lerp(1.0,0.6,abs(velocity.length()/ rising_speed))
+	else:
+		sc = 1/lerp(1.0,0.85,abs(velocity.y/max_fall_speed))
+		
+	
 	#$PheonixBro.scale.x = lerp($PheonixBro.scale.x,$PheonixBro.scale.y if flip else -$PheonixBro.scale.y,0.7)
 	#print($PheonixBro.scale.x)
+	$PheonixBro.scale = Vector2(1/sc,sc)
 	$PheonixBro.flip_h = flip
 	$PheonixBro.speed_scale = speed
 	$PheonixBro.global_rotation = lerp($PheonixBro.global_rotation,rot,0.4)
@@ -250,6 +268,7 @@ func _physics_process(delta: float) -> void:
 	_handle_jump()
 	_handle_animation()
 	_handle_dash()
+	LevelManger.has_dash = has_dash
 	$ColorRect.color = (dash_color if(has_dash or $rising.time_left > 0) else no_dash_color)
 	
 	#$fire/.disabled = $rising.time_left > 0

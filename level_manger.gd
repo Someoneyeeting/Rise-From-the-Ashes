@@ -4,6 +4,8 @@ extends Node2D
 
 var current_level = 0
 
+var has_dash := false
+
 var levels = [
 	preload("res://node_2d.tscn"),
 	preload("res://chain.tscn")
@@ -43,7 +45,7 @@ func stop_music():
 
 func restart():
 	$TimerManger.restart()
-	load_level()
+	switch_level(current_level)
 
 func win():
 	$TimerManger.finish(get_level_name(current_level))

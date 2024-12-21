@@ -83,7 +83,6 @@ script = ExtResource("1_0iq53")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_hcaop")
 volume_db = -30.492
-pitch_scale = 0.8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

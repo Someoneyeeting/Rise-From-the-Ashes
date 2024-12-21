@@ -1,13 +1,15 @@
-[gd_scene load_steps=37 format=3 uid="uid://c5fcsyr0qilmn"]
+[gd_scene load_steps=41 format=3 uid="uid://c5fcsyr0qilmn"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6ogng"]
 [ext_resource type="Texture2D" uid="uid://cu3qin4y28ixd" path="res://assets/pheonix_idle.png" id="2_ec43s"]
 [ext_resource type="Texture2D" uid="uid://2qfm1kspkr82" path="res://assets/pheonix_dash_spritesheet.png" id="2_hqf8s"]
 [ext_resource type="AudioStream" uid="uid://bnuhcksmw5if5" path="res://audio/undet/hitHurt.wav" id="3_dkswt"]
+[ext_resource type="Texture2D" uid="uid://o24hudxa3igm" path="res://assets/pheonix_fall_spritesheet.png" id="3_fac0x"]
 [ext_resource type="Texture2D" uid="uid://bjrvldpo5rj60" path="res://assets/pheonix_run_spritesheet.png" id="4_12nwq"]
 [ext_resource type="AudioStream" uid="uid://p13bxt1xnoij" path="res://audio/undet/click.wav" id="4_l583a"]
 [ext_resource type="AudioStream" uid="uid://duqel6bp38h6t" path="res://audio/undet/explosion.wav" id="5_trgde"]
 [ext_resource type="AudioStream" uid="uid://coy7alibqvy1b" path="res://audio/undet/land.wav" id="5_v871l"]
+[ext_resource type="Texture2D" uid="uid://dk84uvr7it575" path="res://assets/pheonix_walljump_spritesheet.png" id="6_8tvnp"]
 [ext_resource type="AudioStream" uid="uid://bt1124o0c5rbd" path="res://audio/undet/afterdash.wav" id="6_0041d"]
 
 [sub_resource type="Curve" id="Curve_hw5du"]
@@ -110,6 +112,14 @@ region = Rect2(0, 48, 48, 48)
 atlas = ExtResource("2_hqf8s")
 region = Rect2(48, 48, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_od5yy"]
+atlas = ExtResource("3_fac0x")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3j2xn"]
+atlas = ExtResource("3_fac0x")
+region = Rect2(48, 0, 48, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_6q46e"]
 atlas = ExtResource("2_ec43s")
 region = Rect2(0, 0, 48, 48)
@@ -178,6 +188,17 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_od5yy")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_3j2xn")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6q46e")
 }, {
@@ -221,6 +242,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"running",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_8tvnp")
+}],
+"loop": true,
+"name": &"wall_slide",
 "speed": 5.0
 }]
 
@@ -325,12 +354,11 @@ wait_time = 0.2
 one_shot = true
 
 [node name="PheonixBro" type="AnimatedSprite2D" parent="."]
-position = Vector2(-0.414431, -9.37396)
-scale = Vector2(1.17678, 1.17678)
+position = Vector2(-2.23159, -5.01278)
+scale = Vector2(0.907501, 0.899292)
 sprite_frames = SubResource("SpriteFrames_6mxkb")
-animation = &"idle"
+animation = &"falling"
 autoplay = "idle"
-frame_progress = 0.304153
 
 [node name="cooldown" type="Timer" parent="."]
 wait_time = 0.3

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bnxls5yyvcdl8"
+path="res://.godot/imported/Spider-Man 2_ The Game Pizza Theme.mp3-dfde4167b66d4d8f6ef1a71b02b6ac2b.mp3str"
+
+[deps]
+
+source_file="res://audio/Spider-Man 2_ The Game Pizza Theme.mp3"
+dest_files=["res://.godot/imported/Spider-Man 2_ The Game Pizza Theme.mp3-dfde4167b66d4d8f6ef1a71b02b6ac2b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
