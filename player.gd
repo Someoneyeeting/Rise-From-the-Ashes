@@ -37,17 +37,20 @@ var has_dash := false
 
 var wall_jump = 0
 var wall_jump_factor = 1
+var was_on_floor := false
 
 ######jump######
 func jump():
 	if(wall_jump == 0):
 		velocity.y = min(-jumpheight,velocity.y)
+		$sounds/jump.play()
 	%cyote.stop()
 	%buffer.stop()
 	
 
 func _wall_jump():
 	LevelManger.start_moving()
+	$sounds/jump.play()
 	velocity.y = min(-jumpheight * wall_jump_factor,velocity.y)
 	velocity.x = -wall_jump * 500 * wall_jump_factor
 	wall_jump_factor -= 0.1
@@ -56,7 +59,7 @@ func _wall_jump():
 
 func _handle_jump():
 	_check_for_wall()
-	if(Input.is_action_pressed("jump")):
+	if(Input.is_action_just_pressed("jump")):
 		%buffer.start()
 	if(wall_jump != 0 and Input.is_action_just_pressed("jump")):
 		_wall_jump()
@@ -83,6 +86,8 @@ func _handle_push_objects():
 				#collider.move_and_slide()
 
 func _handle_falling():
+	if(not was_on_floor and is_on_floor()):
+		$sounds/land.play()
 	if(velocity.y < 0):
 		velocity.y += 20
 	else:
@@ -91,6 +96,7 @@ func _handle_falling():
 			velocity.y += 10
 		elif(velocity.y < max_fall_speed):
 			velocity.y += 40
+	was_on_floor = is_on_floor()
 
 func _handle_movement():
 	var move := Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -127,6 +133,7 @@ func normal_move():
 
 #####rising#####
 func rise():
+	$sounds/dash.play()
 	wall_jump_factor = 1
 	$rising.start()
 	$flamestime.start()
@@ -221,6 +228,7 @@ func _on_firedetect_area_entered(area: Area2D) -> void:
 			_handle_launch(area)
 	if(area.is_in_group("dash")):
 		has_dash = true
+		$sounds/dashcharge.play()
 		CameraHandler.shake(0.2)
 		get_tree().paused = true 
 		$pause.start()
@@ -231,6 +239,7 @@ func _on_firedetect_area_entered(area: Area2D) -> void:
 
 func _on_pause_timeout() -> void:
 	get_tree().paused = false
+	$sounds/afterdash.play()
 
 
 func _on_wall_jump_timeout() -> void:

@@ -1,7 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://c5fcsyr0qilmn"]
+[gd_scene load_steps=27 format=3 uid="uid://c5fcsyr0qilmn"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6ogng"]
 [ext_resource type="Texture2D" uid="uid://cu3qin4y28ixd" path="res://assets/pheonix_idle.png" id="2_ec43s"]
+[ext_resource type="AudioStream" uid="uid://bnuhcksmw5if5" path="res://audio/undet/hitHurt.wav" id="3_dkswt"]
+[ext_resource type="AudioStream" uid="uid://p13bxt1xnoij" path="res://audio/undet/click.wav" id="4_l583a"]
+[ext_resource type="AudioStream" uid="uid://duqel6bp38h6t" path="res://audio/undet/explosion.wav" id="5_trgde"]
+[ext_resource type="AudioStream" uid="uid://coy7alibqvy1b" path="res://audio/undet/land.wav" id="5_v871l"]
+[ext_resource type="AudioStream" uid="uid://bt1124o0c5rbd" path="res://audio/undet/afterdash.wav" id="6_0041d"]
 
 [sub_resource type="Curve" id="Curve_hw5du"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.866667, 0), 0.0, 0.0, 0, 0]
@@ -205,7 +210,7 @@ one_shot = true
 
 [node name="buffer" type="Timer" parent="jump"]
 unique_name_in_owner = true
-wait_time = 0.3
+wait_time = 0.1
 one_shot = true
 
 [node name="pause" type="Timer" parent="."]
@@ -262,6 +267,34 @@ speed_scale = 0.5
 wait_time = 0.3
 one_shot = true
 autostart = true
+
+[node name="sounds" type="Node" parent="."]
+
+[node name="dash" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("3_dkswt")
+volume_db = -10.0
+pitch_scale = 1.5
+
+[node name="jump" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("4_l583a")
+volume_db = -30.0
+pitch_scale = 0.6
+
+[node name="land" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("5_v871l")
+volume_db = -25.0
+pitch_scale = 0.4
+
+[node name="dashcharge" type="AudioStreamPlayer" parent="sounds"]
+process_mode = 3
+stream = ExtResource("5_trgde")
+volume_db = -20.0
+pitch_scale = 2.0
+
+[node name="afterdash" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("6_0041d")
+volume_db = -20.0
+pitch_scale = 2.0
 
 [connection signal="area_entered" from="firedetect" to="." method="_on_firedetect_area_entered"]
 [connection signal="timeout" from="pause" to="." method="_on_pause_timeout"]

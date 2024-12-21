@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://5mfkfjv1f073"]
 
+[ext_resource type="Script" path="res://UI/button.gd" id="1_10yid"]
 [ext_resource type="FontFile" uid="uid://b8upb2xuqlq8o" path="res://arapey-regular.ttf" id="1_lkgjx"]
-[ext_resource type="Script" path="res://ui/button.gd" id="1_oxfsv"]
 [ext_resource type="AudioStream" uid="uid://dln6riynxfsqs" path="res://crow.wav" id="3_3clrk"]
 [ext_resource type="AudioStream" uid="uid://bsbav2hyoan1p" path="res://USA Anthem but it has gunshots, eagles sounds, and patriotism.mp3" id="4_a8cv3"]
 
@@ -118,7 +118,7 @@ _data = {
 
 [node name="button" type="Node2D"]
 scale = Vector2(1.2997, 1.2997)
-script = ExtResource("1_oxfsv")
+script = ExtResource("1_10yid")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 3.0

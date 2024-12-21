@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dleh41482vrwe"]
+[gd_scene load_steps=3 format=3 uid="uid://dleh41482vrwe"]
 
 [ext_resource type="Script" path="res://particalhandler.gd" id="1_rkpqr"]
+[ext_resource type="AudioStream" uid="uid://bfwckldad0gwg" path="res://audio/crate_boom.wav" id="2_3hxwq"]
 
 [node name="particalhandler" type="Node2D"]
 script = ExtResource("1_rkpqr")
+
+[node name="particles" type="Node2D" parent="."]
+
+[node name="barrel_break" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3hxwq")

@@ -8,7 +8,8 @@ script/source = "extends Node2D
 
 
 func _on_button_press() -> void:
-	LevelManger.switch_level(0)
+	LevelManger.start_music()
+	LevelManger.load_level()
 	owner.manger.close_current()
 "
 
@@ -20,15 +21,13 @@ buttons = NodePath("buttons")
 
 [node name="button" parent="buttons" node_paths=PackedStringArray("parentmenu") instance=ExtResource("2_bdnqi")]
 position = Vector2(106, 283)
-parentmenu = NodePath("../..")
 text = "play"
+parentmenu = NodePath("../..")
 
 [node name="button2" parent="buttons" node_paths=PackedStringArray("parentmenu") instance=ExtResource("2_bdnqi")]
 position = Vector2(106, 369)
-parentmenu = NodePath("../..")
 text = "settings"
+parentmenu = NodePath("../..")
 
 [node name="event" type="Node2D" parent="."]
 script = SubResource("GDScript_s4vvv")
-
-[connection signal="Press" from="buttons/button" to="event" method="_on_button_press"]
