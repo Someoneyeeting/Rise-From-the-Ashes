@@ -296,6 +296,8 @@ func _on_firedetect_area_entered(area: Area2D) -> void:
 			_handle_launch(area)
 	if(area.is_in_group("dash")):
 		has_dash = true
+		LevelManger.has_dash = true
+		await get_tree().process_frame
 		$sounds/dashcharge.play()
 		CameraHandler.shake(0.2)
 		get_tree().paused = true 
