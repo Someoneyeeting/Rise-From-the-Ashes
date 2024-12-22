@@ -31,7 +31,9 @@ void vertex() {
 
 void fragment() {
 	float val = texture(mask,UV).r;
-	COLOR.rgb = mix(COLOR,clr * 2.,val).rgb;
+	if(COLOR.r > 0.5){
+		COLOR.rgb = mix(COLOR,clr * 2.,COLOR.r).rgb;
+	}
 }
 
 //void light() {
@@ -42,7 +44,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8nixm"]
 shader = SubResource("Shader_qvdad")
-shader_parameter/clr = Color(0, 0.0533934, 1, 1)
+shader_parameter/clr = Color(0, 0.0558286, 1, 1)
 shader_parameter/mask = ExtResource("1_fxx37")
 
 [node name="tile" type="Node2D"]

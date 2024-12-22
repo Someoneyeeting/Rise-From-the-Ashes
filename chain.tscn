@@ -1,147 +1,85 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbe6ketj12peq"]
+[gd_scene load_steps=8 format=4 uid="uid://dbe6ketj12peq"]
 
 [ext_resource type="PackedScene" uid="uid://cqhqcmlysjg7f" path="res://camera_2d.tscn" id="1_g8xro"]
-[ext_resource type="PackedScene" uid="uid://7bloetcae2wd" path="res://wall.tscn" id="1_rmwk7"]
 [ext_resource type="PackedScene" uid="uid://bngwplhy6ptwg" path="res://barrel.tscn" id="2_ce6xe"]
 [ext_resource type="PackedScene" uid="uid://xl2c3slxjx3o" path="res://fire.tscn" id="3_tppby"]
 [ext_resource type="PackedScene" uid="uid://c5fcsyr0qilmn" path="res://player.tscn" id="4_2286s"]
 [ext_resource type="PackedScene" uid="uid://pc5wtqu8b405" path="res://dashorb.tscn" id="5_vsfxi"]
 [ext_resource type="PackedScene" uid="uid://bs46qeqgw42g6" path="res://win.tscn" id="7_46uae"]
-[ext_resource type="PackedScene" uid="uid://b0e7n44fm4h4o" path="res://tile.tscn" id="8_8xcum"]
+[ext_resource type="PackedScene" uid="uid://c2ybgge6h720f" path="res://tile_map_layer.tscn" id="7_tf0ij"]
 
 [node name="Node2D" type="Node2D"]
 
+[node name="TileMapLayer" parent="." instance=ExtResource("7_tf0ij")]
+tile_map_data = PackedByteArray("AAAEAP7/AQACAAIAAAAEAP3/AQACAAEAAAAEAPz/AQACAAEAAAADAP7/AQACAAEAAAADAP3/AQACAAEAAAADAPz/AQACAAAAAAACAP7/AQACAAEAAAACAP3/AQACAAEAAAACAPz/AQACAAAAAAABAP7/AQACAAEAAAABAP3/AQACAAEAAAABAPz/AQACAAAAAAAAAP7/AQACAAEAAAAAAP3/AQACAAEAAAAAAPz/AQACAAAAAAD///7/AQABAAEAAAD///3/AQABAAEAAAD///z/AQABAAAAAAABAAAAAQACAAEAAAABAP//AQACAAEAAAAAAAAAAQACAAEAAAAAAP//AQACAAEAAAD//wAAAQABAAEAAAD/////AQABAAEAAAACAP//AQACAAEAAAADAP//AQAFAAEAAAACAAAAAQAFAAEAAAAXAAsAAQABAAMAAAAYAP7/AQABAAEAAAAYAP//AQAEAAEAAAAYAAsAAQACAAAAAAAYAAwAAQABAAIAAAAZAP7/AQACAAEAAAAZAP//AQACAAEAAAAZAAAAAQAEAAEAAAAZAAsAAQACAAAAAAAZAAwAAQACAAIAAAAaAP7/AQACAAEAAAAaAP//AQACAAEAAAAaAAAAAQACAAEAAAAaAAEAAQAEAAEAAAAaAAsAAQACAAAAAAAaAAwAAQACAAEAAAAaAA0AAQABAAIAAAAbAPz/AQACAAEAAAAbAP3/AQACAAEAAAAbAP7/AQACAAEAAAAbAP//AQACAAEAAAAbAAAAAQACAAEAAAAbAAEAAQACAAEAAAAbAAIAAQABAAEAAAAbAAMAAQABAAEAAAAbAAQAAQABAAEAAAAbAAUAAQABAAEAAAAbAAYAAQABAAEAAAAbAAcAAQABAAEAAAAbAAgAAQABAAEAAAAbAAkAAQABAAEAAAAbAAoAAQABAAEAAAAbAAsAAQACAAEAAAAbAAwAAQACAAEAAAAbAA0AAQACAAEAAAAbAA4AAQABAAEAAAAbAA8AAQABAAIAAAAcAPz/AQACAAEAAAAcAP3/AQACAAEAAAAcAP7/AQACAAEAAAAcAP//AQACAAEAAAAcAAAAAQACAAEAAAAcAAEAAQACAAEAAAAcAAIAAQACAAEAAAAcAAMAAQACAAEAAAAcAAQAAQACAAEAAAAcAAUAAQACAAEAAAAcAAYAAQACAAEAAAAcAAcAAQACAAEAAAAcAAgAAQACAAEAAAAcAAkAAQACAAEAAAAcAAoAAQACAAEAAAAcAAsAAQACAAEAAAAcAAwAAQACAAEAAAAcAA0AAQACAAEAAAAcAA4AAQACAAEAAAAcAA8AAQACAAIAAAAdAP3/AQACAAEAAAAdAP7/AQACAAEAAAAdAP//AQACAAEAAAAdAAAAAQACAAEAAAAdAAEAAQACAAEAAAAdAAIAAQACAAEAAAAdAAMAAQACAAEAAAAdAAQAAQACAAEAAAAdAAUAAQACAAEAAAAdAAYAAQACAAEAAAAdAAcAAQACAAEAAAAdAAgAAQACAAEAAAAdAAkAAQACAAEAAAAdAAoAAQACAAEAAAAdAAsAAQACAAEAAAAdAAwAAQACAAEAAAAdAA0AAQACAAEAAAAdAA4AAQACAAEAAAAdAA8AAQACAAIAAAAeAP3/AQACAAEAAAAeAP7/AQACAAEAAAAeAP//AQACAAEAAAAeAAAAAQACAAEAAAAeAAEAAQACAAEAAAAeAAIAAQACAAEAAAAeAAMAAQACAAEAAAAeAAQAAQACAAEAAAAeAAUAAQACAAEAAAAeAAYAAQACAAEAAAAeAAcAAQACAAEAAAAeAAgAAQACAAEAAAAeAAkAAQACAAEAAAAeAAoAAQACAAEAAAAeAAsAAQACAAEAAAAeAAwAAQACAAEAAAAeAA0AAQACAAEAAAAeAA4AAQACAAEAAAAeAA8AAQACAAIAAAAfAAsAAQACAAEAAAAfAAwAAQACAAEAAAAfAA0AAQACAAEAAAAfAA4AAQACAAEAAAAfAA8AAQACAAIAAAAgAAsAAQACAAEAAAAgAAwAAQACAAEAAAAgAA0AAQACAAEAAAAgAA4AAQACAAEAAAAgAA8AAQACAAIAAAAhAAsAAQACAAAAAAAhAAwAAQACAAEAAAAhAA0AAQACAAEAAAAhAA4AAQACAAEAAAAhAA8AAQACAAIAAAAiAAsAAQACAAAAAAAiAAwAAQACAAEAAAAiAA0AAQACAAEAAAAiAA4AAQACAAEAAAAiAA8AAQACAAIAAAAdAPz/AQACAAAAAAAeAPz/AQADAAAAAAAfAP3/AQACAAAAAAAfAP7/AQACAAEAAAAfAP//AQACAAEAAAAfAAAAAQACAAEAAAAfAAEAAQACAAEAAAAfAAIAAQACAAEAAAAfAAMAAQACAAEAAAAfAAQAAQACAAEAAAAfAAUAAQACAAEAAAAfAAYAAQACAAEAAAAfAAcAAQACAAEAAAAfAAgAAQACAAEAAAAfAAkAAQACAAEAAAAfAAoAAQACAAEAAAAgAP3/AQADAAAAAAAgAP7/AQADAAEAAAAgAP//AQADAAEAAAAgAAAAAQADAAEAAAAgAAEAAQADAAEAAAAgAAIAAQADAAEAAAAgAAMAAQADAAEAAAAgAAQAAQADAAEAAAAgAAUAAQADAAEAAAAgAAYAAQADAAEAAAAgAAcAAQADAAEAAAAgAAgAAQADAAEAAAAgAAkAAQADAAEAAAAgAAoAAQADAAEAAAAjAAsAAQACAAAAAAAjAAwAAQACAAEAAAAjAA0AAQACAAEAAAAjAA4AAQACAAEAAAAjAA8AAQACAAIAAAAkAAsAAQADAAAAAAAkAAwAAQADAAEAAAAkAA0AAQADAAEAAAAkAA4AAQADAAEAAAAkAA8AAQADAAIAAAD//wEAAQACAAEAAAD//wIAAQACAAEAAAD//wMAAQACAAEAAAD//wQAAQACAAEAAAD//wUAAQACAAEAAAD//wYAAQACAAEAAAD//wcAAQACAAEAAAD//wgAAQACAAEAAAD//wkAAQACAAEAAAD//woAAQACAAEAAAD//wsAAQACAAEAAAD//wwAAQACAAEAAAAAAAEAAQADAAEAAAAAAAIAAQADAAEAAAAAAAMAAQADAAEAAAAAAAQAAQADAAEAAAAAAAUAAQADAAEAAAAAAAYAAQADAAEAAAAAAAcAAQADAAEAAAAAAAgAAQADAAEAAAAAAAkAAQADAAEAAAAAAAoAAQADAAEAAAAAAAsAAQADAAEAAAAAAAwAAQACAAEAAAAAAA0AAQACAAEAAAAAAA4AAQACAAEAAAAAAA8AAQACAAIAAAABAAwAAQACAAAAAAABAA0AAQACAAEAAAABAA4AAQACAAEAAAABAA8AAQACAAIAAAACAAwAAQACAAAAAAACAA0AAQACAAEAAAACAA4AAQACAAEAAAACAA8AAQACAAIAAAADAAwAAQACAAAAAAADAA0AAQACAAEAAAADAA4AAQACAAEAAAADAA8AAQACAAIAAAAEAAwAAQACAAAAAAAEAA0AAQACAAEAAAAEAA4AAQACAAEAAAAEAA8AAQACAAIAAAAFAAwAAQACAAAAAAAFAA0AAQACAAEAAAAFAA4AAQACAAEAAAAFAA8AAQACAAIAAAAGAAwAAQACAAAAAAAGAA0AAQACAAEAAAAGAA4AAQACAAEAAAAGAA8AAQACAAIAAAAHAAUAAQACAAAAAAAHAAYAAQACAAEAAAAHAAcAAQACAAEAAAAHAAgAAQACAAEAAAAHAAkAAQACAAEAAAAHAAoAAQACAAIAAAAHAAwAAQACAAAAAAAHAA0AAQACAAEAAAAHAA4AAQACAAEAAAAHAA8AAQACAAIAAAAIAAUAAQACAAAAAAAIAAYAAQACAAEAAAAIAAcAAQACAAEAAAAIAAgAAQACAAEAAAAIAAkAAQACAAEAAAAIAAoAAQACAAIAAAAIAAwAAQACAAAAAAAIAA0AAQACAAEAAAAIAA4AAQACAAEAAAAIAA8AAQACAAIAAAAJAAUAAQADAAAAAAAJAAYAAQADAAEAAAAJAAcAAQADAAEAAAAJAAgAAQADAAEAAAAJAAkAAQADAAEAAAAJAAoAAQADAAIAAAAJAAwAAQACAAAAAAAJAA0AAQACAAEAAAAJAA4AAQACAAEAAAAJAA8AAQACAAIAAAAKAAwAAQACAAAAAAAKAA0AAQACAAEAAAAKAA4AAQACAAEAAAAKAA8AAQACAAIAAAALAAwAAQACAAEAAAALAA0AAQACAAEAAAALAA4AAQACAAEAAAALAA8AAQACAAIAAAAMAAUAAQADAAAAAAAMAAYAAQADAAEAAAAMAAcAAQADAAEAAAAMAAgAAQADAAEAAAAMAAkAAQADAAEAAAAMAAoAAQADAAEAAAAMAAsAAQADAAEAAAAMAAwAAQADAAEAAAAMAA0AAQADAAEAAAAMAA4AAQADAAEAAAAMAA8AAQADAAIAAAD+/wEAAQABAAEAAAD+/wIAAQABAAEAAAD+/wMAAQABAAEAAAD+/wQAAQABAAEAAAD+/wUAAQABAAEAAAD+/wYAAQABAAEAAAD+/wcAAQABAAEAAAD+/wgAAQABAAEAAAD+/wkAAQABAAEAAAD+/woAAQABAAEAAAD+/wsAAQABAAEAAAD+/wwAAQABAAIAAAD//w0AAQABAAEAAAD//w4AAQABAAEAAAD//w8AAQABAAIAAAAGAAUAAQABAAAAAAAGAAYAAQABAAEAAAAGAAcAAQABAAEAAAAGAAgAAQABAAEAAAAGAAkAAQABAAEAAAAGAAoAAQABAAIAAAALAAUAAQABAAAAAAALAAYAAQABAAEAAAALAAcAAQABAAEAAAALAAgAAQABAAEAAAALAAkAAQABAAEAAAALAAoAAQABAAEAAAALAAsAAQABAAEAAAAZAPz/AQACAAEAAAAaAPz/AQACAAEAAAAEAPv/AQABAAEAAAAEAPr/AQABAAEAAAAEAPn/AQABAAEAAAAEAPj/AQABAAAAAAAFAPj/AQACAAAAAAAGAPj/AQACAAAAAAAHAPj/AQACAAAAAAAIAPj/AQACAAAAAAAJAPj/AQACAAAAAAAKAPj/AQACAAAAAAALAPj/AQACAAAAAAAMAPj/AQACAAMAAAANAPj/AQACAAMAAAAOAPj/AQACAAMAAAAPAPj/AQACAAMAAAAQAPj/AQACAAMAAAARAPj/AQACAAMAAAASAPj/AQACAAMAAAATAPj/AQACAAMAAAAUAPj/AQACAAMAAAAVAPj/AQACAAMAAAAWAPj/AQACAAAAAAAXAPj/AQACAAAAAAAYAPj/AQACAAAAAAAZAPj/AQACAAAAAAAaAPj/AQACAAAAAAAbAPj/AQACAAAAAAAcAPj/AQADAAAAAAAcAPn/AQADAAEAAAAcAPr/AQADAAEAAAAcAPv/AQADAAEAAAAbAPv/AQACAAEAAAAaAPv/AQACAAEAAAAaAPr/AQACAAEAAAAbAPr/AQACAAEAAAAZAPv/AQACAAEAAAAZAPr/AQACAAEAAAAZAPn/AQACAAEAAAAZAP3/AQACAAEAAAAYAP3/AQABAAEAAAAYAPz/AQABAAEAAAAYAPv/AQABAAEAAAAYAPr/AQABAAEAAAAYAPn/AQACAAEAAAAaAPn/AQACAAEAAAAbAPn/AQACAAEAAAAaAP3/AQACAAEAAAAXAPn/AQACAAIAAAAWAPn/AQABAAIAAAALAPn/AQADAAIAAAAKAPn/AQACAAIAAAAJAPn/AQACAAIAAAAIAPn/AQACAAIAAAAHAPn/AQACAAIAAAAGAPn/AQACAAEAAAAFAPn/AQACAAEAAAAFAPv/AQADAAEAAAAFAPz/AQADAAEAAAAFAP3/AQADAAEAAAAFAP7/AQADAAIAAAAFAPr/AQACAAEAAAAGAPr/AQADAAIAAAA=")
+
 [node name="Camera2D" parent="." instance=ExtResource("1_g8xro")]
-position = Vector2(61.1576, -79.5926)
+position = Vector2(53.6365, -57.2869)
 zoom = Vector2(1.045, 1.045)
-
-[node name="wall" parent="." instance=ExtResource("1_rmwk7")]
-position = Vector2(117.519, 655.241)
-scale = Vector2(46.4487, 10.2461)
-
-[node name="wall4" parent="." instance=ExtResource("1_rmwk7")]
-position = Vector2(1594.51, 655.241)
-scale = Vector2(46.4487, 10.2461)
-
-[node name="wall2" parent="." instance=ExtResource("1_rmwk7")]
-position = Vector2(412.215, 400.181)
-rotation = 1.5708
-scale = Vector2(12.92, 8.7)
-
-[node name="wall3" parent="." instance=ExtResource("1_rmwk7")]
-position = Vector2(550.557, 411.757)
-rotation = 1.5708
-scale = Vector2(14.1051, 3.09443)
-
-[node name="barrel" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(333.99, 542.653)
-is_static = true
-
-[node name="barrel2" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(353.822, 542.653)
-is_static = true
-
-[node name="barrel3" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(373.104, 542.653)
-is_static = true
-
-[node name="barrel4" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(392.937, 542.653)
-is_static = true
-
-[node name="barrel5" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(412.039, 542.653)
-is_static = true
-
-[node name="barrel6" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(431.872, 542.653)
-is_static = true
-
-[node name="barrel7" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(451.154, 542.653)
-is_static = true
-
-[node name="barrel8" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(469.987, 542.653)
-is_static = true
-
-[node name="barrel9" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(489.887, 542.653)
-is_static = true
-
-[node name="barrel10" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(509.72, 542.653)
-is_static = true
-
-[node name="barrel11" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(509.72, 522.424)
-is_static = true
-
-[node name="barrel12" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(509.72, 502.449)
-is_static = true
-
-[node name="barrel13" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(509.72, 482.22)
-is_static = true
-
-[node name="barrel14" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(509.72, 462.653)
-is_static = true
-
-[node name="barrel15" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(509.72, 442.424)
-is_static = true
-
-[node name="barrel16" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(509.72, 422.449)
-is_static = true
-
-[node name="barrel17" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(509.72, 402.22)
-is_static = true
-
-[node name="barrel18" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(509.72, 381.449)
-is_static = true
-
-[node name="barrel19" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(509.72, 361.22)
-is_static = true
-
-[node name="barrel20" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(509.72, 341.653)
-is_static = true
-
-[node name="barrel21" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(509.72, 321.424)
-is_static = true
-
-[node name="barrel22" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(509.72, 301.449)
-is_static = true
-
-[node name="barrel23" parent="." instance=ExtResource("2_ce6xe")]
-position = Vector2(509.72, 281.22)
-is_static = true
-
-[node name="Fire" parent="." instance=ExtResource("3_tppby")]
-position = Vector2(544.747, 270.055)
-on_fire = false
 
 [node name="player" parent="." instance=ExtResource("4_2286s")]
 position = Vector2(192.358, 523.379)
 
 [node name="Dashorb" parent="." instance=ExtResource("5_vsfxi")]
-position = Vector2(272.939, 431.1)
+position = Vector2(239.303, 473.145)
 
 [node name="Dashorb2" parent="." instance=ExtResource("5_vsfxi")]
 position = Vector2(734.703, 63.9202)
 
 [node name="win" parent="." instance=ExtResource("7_46uae")]
-position = Vector2(1192.05, 531.232)
+position = Vector2(1171.6, 507.635)
 scale = Vector2(6.20062, 2.17654)
 
-[node name="tile" parent="." instance=ExtResource("8_8xcum")]
-position = Vector2(701.361, 439.779)
-scale = Vector2(0.264375, 0.264375)
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="barrel" parent="Node2D" instance=ExtResource("2_ce6xe")]
+position = Vector2(312.657, 552.18)
+is_static = true
+
+[node name="barrel2" parent="Node2D" instance=ExtResource("2_ce6xe")]
+position = Vector2(360.657, 552.18)
+is_static = true
+
+[node name="barrel3" parent="Node2D" instance=ExtResource("2_ce6xe")]
+position = Vector2(408.657, 552.18)
+is_static = true
+
+[node name="barrel4" parent="Node2D" instance=ExtResource("2_ce6xe")]
+position = Vector2(456.657, 552.18)
+is_static = true
+
+[node name="barrel5" parent="Node2D" instance=ExtResource("2_ce6xe")]
+position = Vector2(504.657, 552.18)
+is_static = true
+
+[node name="barrel6" parent="Node2D" instance=ExtResource("2_ce6xe")]
+position = Vector2(504.657, 504.18)
+is_static = true
+
+[node name="barrel7" parent="Node2D" instance=ExtResource("2_ce6xe")]
+position = Vector2(504.657, 456.18)
+is_static = true
+
+[node name="barrel8" parent="Node2D" instance=ExtResource("2_ce6xe")]
+position = Vector2(504.657, 408.18)
+is_static = true
+
+[node name="barrel9" parent="Node2D" instance=ExtResource("2_ce6xe")]
+position = Vector2(504.657, 360.18)
+is_static = true
+
+[node name="barrel10" parent="Node2D" instance=ExtResource("2_ce6xe")]
+position = Vector2(504.657, 312.18)
+is_static = true
+
+[node name="barrel11" parent="Node2D" instance=ExtResource("2_ce6xe")]
+position = Vector2(504.657, 264.18)
+is_static = true
+
+[node name="Fire" parent="." instance=ExtResource("3_tppby")]
+position = Vector2(554.68, 235.723)
+on_fire = false
+
+[node name="Fire2" parent="." instance=ExtResource("3_tppby")]
+position = Vector2(598.83, 236.168)
+on_fire = false
