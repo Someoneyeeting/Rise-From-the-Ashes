@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0e7n44fm4h4o"]
+
+[ext_resource type="Texture2D" uid="uid://n7afftbn4ybx" path="res://assets/tile_mask.png" id="1_fxx37"]
+[ext_resource type="Texture2D" uid="uid://bete7in3sdu4k" path="res://assets/tile_all_sides_.png" id="2_5io5l"]
+
+[sub_resource type="GDScript" id="GDScript_2gef0"]
+script/source = "extends Node2D
+
+
+
+@export
+var dashcolor : Color
+
+@export
+var nodashcolor : Color
+
+
+func _physics_process(delta: float) -> void:
+	$TileAllSides.material.set_shader_parameter(\"clr\", dashcolor if not LevelManger.has_dash else nodashcolor)
+"
+
+[sub_resource type="Shader" id="Shader_qvdad"]
+code = "shader_type canvas_item;
+
+uniform sampler2D mask : filter_nearest;
+uniform vec4 clr : source_color;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	float val = texture(mask,UV).r;
+	COLOR.rgb = mix(COLOR,clr * 2.,val).rgb;
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8nixm"]
+shader = SubResource("Shader_qvdad")
+shader_parameter/clr = Color(0, 0.0533934, 1, 1)
+shader_parameter/mask = ExtResource("1_fxx37")
+
+[node name="tile" type="Node2D"]
+script = SubResource("GDScript_2gef0")
+dashcolor = Color(1, 0.133333, 0, 1)
+nodashcolor = Color(0.221686, 0.406238, 0.705882, 1)
+
+[node name="TileAllSides" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_8nixm")
+position = Vector2(489.24, 189.542)
+scale = Vector2(3.33861, 3.33861)
+texture = ExtResource("2_5io5l")

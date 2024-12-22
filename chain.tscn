@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbe6ketj12peq"]
+[gd_scene load_steps=9 format=3 uid="uid://dbe6ketj12peq"]
 
 [ext_resource type="PackedScene" uid="uid://cqhqcmlysjg7f" path="res://camera_2d.tscn" id="1_g8xro"]
 [ext_resource type="PackedScene" uid="uid://7bloetcae2wd" path="res://wall.tscn" id="1_rmwk7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c5fcsyr0qilmn" path="res://player.tscn" id="4_2286s"]
 [ext_resource type="PackedScene" uid="uid://pc5wtqu8b405" path="res://dashorb.tscn" id="5_vsfxi"]
 [ext_resource type="PackedScene" uid="uid://bs46qeqgw42g6" path="res://win.tscn" id="7_46uae"]
+[ext_resource type="PackedScene" uid="uid://b0e7n44fm4h4o" path="res://tile.tscn" id="8_8xcum"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -140,3 +141,7 @@ position = Vector2(734.703, 63.9202)
 [node name="win" parent="." instance=ExtResource("7_46uae")]
 position = Vector2(1192.05, 531.232)
 scale = Vector2(6.20062, 2.17654)
+
+[node name="tile" parent="." instance=ExtResource("8_8xcum")]
+position = Vector2(701.361, 439.779)
+scale = Vector2(0.264375, 0.264375)

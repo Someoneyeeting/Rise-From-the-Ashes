@@ -314,7 +314,7 @@ one_shot = true
 
 [node name="pause" type="Timer" parent="."]
 process_mode = 3
-wait_time = 0.1
+wait_time = 0.16
 one_shot = true
 
 [node name="dash" type="Timer" parent="."]
@@ -359,7 +359,7 @@ scale = Vector2(0.907501, 0.899292)
 sprite_frames = SubResource("SpriteFrames_6mxkb")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.0454391
+frame_progress = 0.539382
 
 [node name="cooldown" type="Timer" parent="."]
 wait_time = 0.3

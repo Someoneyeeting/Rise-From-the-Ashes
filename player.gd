@@ -203,7 +203,7 @@ func rise():
 	_reset_wall_jumps()
 	$rising.start()
 	$flamestime.start()
-	CameraHandler.shake(0.13,lunch_dir * 30)
+	CameraHandler.shake(0.13,lunch_dir * 60)
 	$AudioStreamPlayer.play()
 	Particalhandler.emit("explosion",global_position)
 
