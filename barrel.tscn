@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bngwplhy6ptwg"]
+[gd_scene load_steps=7 format=3 uid="uid://bngwplhy6ptwg"]
 
 [ext_resource type="Script" path="res://barrel.gd" id="1_y80ug"]
+[ext_resource type="Texture2D" uid="uid://cpxfqglxm13r6" path="res://assets/barrel.png" id="2_e4i22"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dsts"]
 size = Vector2(48, 48)
@@ -8,9 +9,47 @@ size = Vector2(48, 48)
 [sub_resource type="CircleShape2D" id="CircleShape2D_38j83"]
 radius = 55.821
 
+[sub_resource type="Shader" id="Shader_4m6pp"]
+code = "shader_type canvas_item;
+
+uniform sampler2D mask : filter_nearest;
+uniform vec4 clr : source_color;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	float val = texture(mask,UV).r;
+	if(COLOR.r > 0.4){
+		COLOR.rgb = mix(COLOR,clr * 2.,COLOR.r).rgb;
+		COLOR.rgb += (sin(TIME * 2. + SCREEN_UV.x * SCREEN_UV.y * 10.)  + 1.) / 8.;
+		
+	}
+	else if(length(COLOR) > 0.4){
+		COLOR.rgb = mix(COLOR,clr * 0.3,COLOR.r).rgb;
+		COLOR.rgb += (sin(TIME * 2. + SCREEN_UV.x * SCREEN_UV.y * 10.)  + 1.) / 40.;
+	}
+	else{
+		//COLOR.rgb += (sin(-TIME * 0.5 + SCREEN_UV.x *  (SCREEN_UV.x + 1.) * SCREEN_UV.y * 10.)  + 1.) / 100.;
+		
+	}
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0qx0i"]
+shader = SubResource("Shader_4m6pp")
+shader_parameter/clr = Color(0.788235, 0.47451, 0, 1)
+
 [node name="barrel" type="CharacterBody2D" groups=["fire", "pushable"]]
-scale = Vector2(0.679276, 0.679276)
 script = ExtResource("1_y80ug")
+dashcolor = Color(0.789063, 0.47497, 0, 1)
+nodashcolor = Color(0, 0.241992, 0.691406, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0dsts")
@@ -22,8 +61,13 @@ visible = false
 shape = SubResource("CircleShape2D_38j83")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -24.0
 offset_top = -24.0
 offset_right = 24.0
 offset_bottom = 24.0
 color = Color(0.496094, 0.317794, 0.238715, 1)
+
+[node name="Barrel" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0qx0i")
+texture = ExtResource("2_e4i22")

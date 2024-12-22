@@ -9,9 +9,17 @@ var is_static = false
 
 var exploded = false
 
+@export
+var dashcolor : Color
+
+@export
+var nodashcolor : Color
+
+
 func _physics_process(delta: float) -> void:
-	if(not is_static):
-		velocity.y += 30
+	$Barrel.material.set_shader_parameter("clr", dashcolor if not LevelManger.has_dash else nodashcolor)
+	if(is_static): return
+	velocity.y += 30
 	#if(get_real_velocity().y > 0):
 		#get_real_velocity().x /= 2
 	if(get_real_velocity().y >= 800):
@@ -21,6 +29,7 @@ func _physics_process(delta: float) -> void:
 	prevspeed = get_real_velocity().y
 	velocity.x /= 1.4
 	move_and_slide()
+	
 
 
 func turn_on():
