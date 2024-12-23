@@ -253,7 +253,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Shader" id="Shader_62tis"]
+[sub_resource type="Shader" id="Shader_nwh2m"]
 code = "shader_type canvas_item;
 
 
@@ -278,7 +278,7 @@ void fragment() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_60jku"]
-shader = SubResource("Shader_62tis")
+shader = SubResource("Shader_nwh2m")
 
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(1.45758, 1.45758)

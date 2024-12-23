@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://ccpwej3kwaens"]
+[gd_scene load_steps=7 format=4 uid="uid://ccpwej3kwaens"]
 
 [ext_resource type="PackedScene" uid="uid://c5fcsyr0qilmn" path="res://player.tscn" id="1_yaku2"]
 [ext_resource type="PackedScene" uid="uid://c2ybgge6h720f" path="res://tile_map_layer.tscn" id="2_l81cy"]
 [ext_resource type="PackedScene" uid="uid://cqhqcmlysjg7f" path="res://camera_2d.tscn" id="4_tqfo8"]
 [ext_resource type="PackedScene" uid="uid://pc5wtqu8b405" path="res://dashorb.tscn" id="5_qi64t"]
 [ext_resource type="PackedScene" uid="uid://bs46qeqgw42g6" path="res://win.tscn" id="5_ypslv"]
+[ext_resource type="PackedScene" uid="uid://cwxcjyyptmyhn" path="res://cpu_particles_2d.tscn" id="6_kxebf"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -28,3 +29,7 @@ position = Vector2(1120.6, 663.241)
 [node name="win" parent="." instance=ExtResource("5_ypslv")]
 position = Vector2(1657.03, 785.895)
 scale = Vector2(7.85816, 2.80874)
+
+[node name="CPUParticles2D" parent="." instance=ExtResource("6_kxebf")]
+position = Vector2(889.734, 509.84)
+scale = Vector2(1.399, 1.399)

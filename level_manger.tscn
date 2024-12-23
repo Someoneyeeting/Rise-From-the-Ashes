@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bd5kexc601vxk"]
+[gd_scene load_steps=14 format=3 uid="uid://bd5kexc601vxk"]
 
 [ext_resource type="Script" path="res://level_manger.gd" id="1_0iq53"]
 [ext_resource type="PackedScene" uid="uid://dybub2e8c5acg" path="res://timer_manger.tscn" id="2_vbynv"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://xtr6xeqnjwch" path="res://VCR_OSD_MONO_1.001.ttf" id="4_o7386"]
 [ext_resource type="Texture2D" uid="uid://cswe6inyfjied" path="res://assets/pheonix_bro.png" id="6_djhgj"]
 [ext_resource type="Texture2D" uid="uid://bete7in3sdu4k" path="res://assets/tile_all_sides_.png" id="7_vp3fl"]
+[ext_resource type="PackedScene" uid="uid://b8g7xho8aaevf" path="res://parallax_2d.tscn" id="8_liqj6"]
 
 [sub_resource type="Animation" id="Animation_htmmm"]
 length = 0.032
@@ -166,6 +167,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="effects" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_dsgwd")
 offset_left = -32.0
 offset_top = -22.0
@@ -186,3 +188,8 @@ texture = ExtResource("6_djhgj")
 visible = false
 position = Vector2(549, 440)
 texture = ExtResource("7_vp3fl")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = -99
+
+[node name="Parallax2D" parent="CanvasLayer2" instance=ExtResource("8_liqj6")]

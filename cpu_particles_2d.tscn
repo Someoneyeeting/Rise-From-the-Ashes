@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwxcjyyptmyhn"]
+
+[sub_resource type="Curve" id="Curve_l6tvd"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.382023, 0.857143), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+visible = false
+z_index = 410
+position = Vector2(640, 360)
+amount = 233
+lifetime = 10.0
+preprocess = 24.24
+emission_shape = 3
+emission_rect_extents = Vector2(640, 360)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.95
+initial_velocity_max = 20.15
+scale_amount_min = 4.8
+scale_amount_max = 5.1
+scale_amount_curve = SubResource("Curve_l6tvd")
+color = Color(0.535156, 0.535156, 0.535156, 1)

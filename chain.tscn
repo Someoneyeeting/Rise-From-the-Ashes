@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dbe6ketj12peq"]
+[gd_scene load_steps=9 format=4 uid="uid://dbe6ketj12peq"]
 
 [ext_resource type="PackedScene" uid="uid://cqhqcmlysjg7f" path="res://camera_2d.tscn" id="1_g8xro"]
 [ext_resource type="PackedScene" uid="uid://bngwplhy6ptwg" path="res://barrel.tscn" id="2_ce6xe"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://pc5wtqu8b405" path="res://dashorb.tscn" id="5_vsfxi"]
 [ext_resource type="PackedScene" uid="uid://bs46qeqgw42g6" path="res://win.tscn" id="7_46uae"]
 [ext_resource type="PackedScene" uid="uid://c2ybgge6h720f" path="res://tile_map_layer.tscn" id="7_tf0ij"]
+[ext_resource type="PackedScene" uid="uid://cwxcjyyptmyhn" path="res://cpu_particles_2d.tscn" id="8_7kdie"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -79,3 +80,5 @@ is_static = true
 [node name="Fire" parent="." instance=ExtResource("3_tppby")]
 position = Vector2(554.68, 235.723)
 on_fire = false
+
+[node name="CPUParticles2D" parent="." instance=ExtResource("8_7kdie")]
