@@ -34,6 +34,9 @@ func _input(event: InputEvent) -> void:
 func get_level_name(level):
 	return levelnames[level]
 
+func get_current_level_name():
+	return get_level_name(current_level)
+
 func load_level():
 	pause()
 	$TimerManger.restart()
@@ -59,17 +62,17 @@ func restart():
 	switch_level(current_level)
 
 func win():
-	$TimerManger.finish(get_level_name(current_level))
+	$TimerManger.finish(current_level)
 	get_next()
 
 func get_next():
 	switch_level(current_level + 1)
 
 func is_level_passed(level : int):
-	return false
+	return $TimerManger.is_passed_level(level)
 
 func get_level_time(level : int):
-	return 0
+	return $TimerManger.get_level_best_time(level)
 
 func get_levels_count():
 	return levels.size()

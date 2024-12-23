@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://level_manger.gd" id="1_0iq53"]
 [ext_resource type="PackedScene" uid="uid://dybub2e8c5acg" path="res://timer_manger.tscn" id="2_vbynv"]
-[ext_resource type="AudioStream" uid="uid://5rhm72g1218d" path="res://pheonix game ost or smth.mp3" id="3_hcaop"]
+[ext_resource type="AudioStream" uid="uid://b71tedkg88013" path="res://audio/pheonix game ost or smthV2.wav" id="3_puqb3"]
 [ext_resource type="AudioStream" uid="uid://cd2p3cmj3ik31" path="res://audio/select.wav" id="4_c8yrs"]
 [ext_resource type="FontFile" uid="uid://xtr6xeqnjwch" path="res://VCR_OSD_MONO_1.001.ttf" id="4_o7386"]
 [ext_resource type="Texture2D" uid="uid://cswe6inyfjied" path="res://assets/pheonix_bro.png" id="6_djhgj"]
@@ -120,8 +120,8 @@ script = ExtResource("1_0iq53")
 [node name="TimerManger" parent="." instance=ExtResource("2_vbynv")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_hcaop")
-volume_db = -20.0
+stream = ExtResource("3_puqb3")
+volume_db = -80.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
