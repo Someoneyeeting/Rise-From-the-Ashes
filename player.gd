@@ -203,6 +203,7 @@ func rise():
 	_reset_wall_jumps()
 	$rising.start()
 	$flamestime.start()
+	LevelManger.dimming = 0.1
 	CameraHandler.shake(0.13,lunch_dir * 60)
 	$AudioStreamPlayer.play()
 	Particalhandler.emit("explosion",global_position)
@@ -277,6 +278,8 @@ func _physics_process(delta: float) -> void:
 	_handle_dash()
 	LevelManger.has_dash = has_dash
 	$ColorRect.color = (dash_color if(has_dash or $rising.time_left > 0) else no_dash_color)
+	
+	$ColorRect2.material.set_shader_parameter("maxdis",lerp(0.4,.6,0.3/LevelManger.dimming))
 	
 	#$fire/.disabled = $rising.time_left > 0
 	

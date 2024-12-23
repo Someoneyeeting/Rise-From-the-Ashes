@@ -62,7 +62,10 @@ func start():
 func get_time_as_string(time):
 	if(time == -1):
 		return "--/--"
-	return str(int(time)) + ":" + str(time - int(time)).substr(2,2)
+	
+	var seconds :int= int(time)
+	var ms := int(str(time - int(time)).substr(2,2))
+	return str("%02d:%02d" % [seconds,ms])
 
 func finish(level):
 	pause()

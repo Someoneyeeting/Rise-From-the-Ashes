@@ -82,7 +82,7 @@ _data = {
 code = "shader_type canvas_item;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
-uniform float t = 0.4;
+uniform float dimming = 0.4;
 
 
 void vertex() {
@@ -98,7 +98,7 @@ void fragment() {
 	float y = SCREEN_UV.y;
 	float dist = distance(vec2(0.5,0.5),SCREEN_UV);
 	
-	dist = 1. - dist / 2. + 0.2;
+	dist = (1. - dist / 2. + 0.2) * dimming;
 	
 	
 	COLOR = clr * dist;
@@ -112,7 +112,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dsgwd"]
 shader = SubResource("Shader_ohnt6")
-shader_parameter/t = 0.07
+shader_parameter/dimming = 0.4
 
 [node name="LevelManger" type="Node2D"]
 script = ExtResource("1_0iq53")
@@ -121,7 +121,7 @@ script = ExtResource("1_0iq53")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_puqb3")
-volume_db = -80.0
+volume_db = -20.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

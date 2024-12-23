@@ -12,6 +12,8 @@ var levels = [
 ]
 
 
+var dimming : float = 1.
+
 func _ready() -> void:
 	#restart()
 	get_tree().current_scene.queue_free()
@@ -26,6 +28,10 @@ func _input(event: InputEvent) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+func _physics_process(delta: float) -> void:
+	dimming = lerp(dimming,1.,0.3)
+	$CanvasLayer/effects.material.set_shader_parameter("dimming",dimming)
 
 func get_level_name(level):
 	return levels[level][1]
