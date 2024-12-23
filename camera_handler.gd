@@ -9,7 +9,7 @@ var targetoff := Vector2.ZERO
 var curoff := Vector2.ZERO
 
 func shake(time = 0.3,dir := Vector2.ZERO):
-	initpos = camera.global_position
+	#initpos = camera.global_position
 	$shake.wait_time = time
 	$shake.start(time)
 	shakedir = dir
