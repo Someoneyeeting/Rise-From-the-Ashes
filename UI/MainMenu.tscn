@@ -25,12 +25,12 @@ buttons = NodePath("buttons")
 [node name="button" parent="buttons" node_paths=PackedStringArray("parentmenu") instance=ExtResource("2_bdnqi")]
 position = Vector2(106, 283)
 parentmenu = NodePath("../..")
-text = "play"
+text = "PLAY"
 
 [node name="button2" parent="buttons" node_paths=PackedStringArray("parentmenu") instance=ExtResource("2_bdnqi")]
 position = Vector2(106, 369)
 parentmenu = NodePath("../..")
-text = "settings"
+text = "RESET TIMES"
 
 [node name="event" type="Node2D" parent="."]
 script = SubResource("GDScript_s4vvv")

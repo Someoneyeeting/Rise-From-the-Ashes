@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8g7xho8aaevf"]
+[gd_scene load_steps=12 format=3 uid="uid://b8g7xho8aaevf"]
 
 [ext_resource type="Texture2D" uid="uid://digojqi4lyvv0" path="res://assets/bg/tile001.png" id="2_rrx3o"]
 [ext_resource type="Texture2D" uid="uid://cb0h5m4cs7nid" path="res://assets/bg/tile002.png" id="3_kb7j1"]
@@ -12,12 +12,18 @@ script/source = "extends Node2D
 @export
 var scroll :float = 0.06
 
+@export
+var dash_color : Color
+
+@export
+var no_dash_color : Color
+
 var poses = []
 
 func _ready() -> void:
 	for i in $ColorRect.get_children().size():
 		poses.push_back(Vector2(randi_range(-30,1320),randi_range(-10,780)))
-		$ColorRect.get_child(i).scale *= randf_range(0.5,1.2)
+		$ColorRect.get_child(i).scale *= randf_range(0.7,1.6)
 
 func _physics_process(delta: float) -> void:
 	for i in get_child_count():
@@ -26,6 +32,9 @@ func _physics_process(delta: float) -> void:
 		if(node is not Sprite2D): continue
 		
 		node.region_rect.position.x -= scroll * i
+	var clr = dash_color if not LevelManger.has_dash else no_dash_color
+	$ColorRect3.color = clr
+	$ColorRect4.color = clr
 	for i in poses.size():
 		var node :ColorRect=$ColorRect.get_child(i)
 		node.position = node.position.move_toward(poses[i],1)
@@ -64,6 +73,33 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ds00a"]
 shader = SubResource("Shader_wngkn")
 
+[sub_resource type="Shader" id="Shader_j2ftn"]
+code = "shader_type canvas_item;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	COLOR.a = min(UV.y * UV.y * 1.,1.);
+	COLOR.rgb += (sin(TIME * 2. + SCREEN_UV.x * SCREEN_UV.y * 10.)  + 1.) / 8.;
+	if(COLOR.r > 0.5){
+	}
+	else{
+		//COLOR.rgb += (sin(-TIME * 0.5 + SCREEN_UV.x *  (SCREEN_UV.x + 1.) * SCREEN_UV.y * 10.)  + 1.) / 100.;
+
+	}
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ylw7x"]
+shader = SubResource("Shader_j2ftn")
+
 [sub_resource type="Shader" id="Shader_m7g40"]
 code = "shader_type canvas_item;
 
@@ -74,7 +110,7 @@ void vertex() {
 }
 
 void fragment() {
-	COLOR = textureLod(SCREEN_TEXTURE,SCREEN_UV,0.9);
+	COLOR = textureLod(SCREEN_TEXTURE,SCREEN_UV,0.4);
 }
 
 //void light() {
@@ -90,6 +126,8 @@ shader = SubResource("Shader_m7g40")
 z_index = -115
 script = SubResource("GDScript_1of0r")
 scroll = 0.03
+dash_color = Color(0.905882, 0.607843, 0, 1)
+no_dash_color = Color(0.250142, 0.399739, 0.905882, 1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -27.9087
@@ -100,6 +138,7 @@ color = Color(0, 0.0394643, 0.0742188, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="ColorRect"]
 material = SubResource("ShaderMaterial_ds00a")
+layout_mode = 0
 offset_left = 153.617
 offset_top = 109.632
 offset_right = 301.617
@@ -108,6 +147,7 @@ scale = Vector2(2.215, 2.215)
 
 [node name="ColorRect3" type="ColorRect" parent="ColorRect"]
 material = SubResource("ShaderMaterial_ds00a")
+layout_mode = 0
 offset_left = 647.175
 offset_top = 280.684
 offset_right = 795.175
@@ -116,6 +156,7 @@ scale = Vector2(2.215, 2.215)
 
 [node name="ColorRect4" type="ColorRect" parent="ColorRect"]
 material = SubResource("ShaderMaterial_ds00a")
+layout_mode = 0
 offset_left = 629.357
 offset_top = 11.6331
 offset_right = 777.357
@@ -124,6 +165,7 @@ scale = Vector2(2.215, 2.215)
 
 [node name="ColorRect5" type="ColorRect" parent="ColorRect"]
 material = SubResource("ShaderMaterial_ds00a")
+layout_mode = 0
 offset_left = 982.153
 offset_top = 155.959
 offset_right = 1130.15
@@ -132,6 +174,7 @@ scale = Vector2(2.215, 2.215)
 
 [node name="ColorRect6" type="ColorRect" parent="ColorRect"]
 material = SubResource("ShaderMaterial_ds00a")
+layout_mode = 0
 offset_left = 157.181
 offset_top = 362.647
 offset_right = 305.181
@@ -140,6 +183,7 @@ scale = Vector2(2.215, 2.215)
 
 [node name="ColorRect7" type="ColorRect" parent="ColorRect"]
 material = SubResource("ShaderMaterial_ds00a")
+layout_mode = 0
 offset_left = 376.342
 offset_top = -48.9481
 offset_right = 524.342
@@ -148,6 +192,7 @@ scale = Vector2(2.215, 2.215)
 
 [node name="ColorRect8" type="ColorRect" parent="ColorRect"]
 material = SubResource("ShaderMaterial_ds00a")
+layout_mode = 0
 offset_left = 25.3281
 offset_top = -52.5117
 offset_right = 173.328
@@ -162,13 +207,13 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 320, 180)
 
-[node name="Tile002" type="Sprite2D" parent="."]
-texture_repeat = 3
-scale = Vector2(4, 4)
-texture = ExtResource("3_kb7j1")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 320, 180)
+[node name="ColorRect3" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ylw7x")
+offset_left = -16.0
+offset_top = 385.0
+offset_right = 1330.0
+offset_bottom = 839.0
+color = Color(0.90625, 0.609199, 0, 1)
 
 [node name="Tile003" type="Sprite2D" parent="."]
 texture_repeat = 3
@@ -196,5 +241,23 @@ offset_left = -31.0
 offset_top = -9.0
 offset_right = 1329.0
 offset_bottom = 754.0
+
+[node name="Tile002" type="Sprite2D" parent="."]
+z_index = 245
+texture_repeat = 3
+scale = Vector2(4, 4)
+texture = ExtResource("3_kb7j1")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 320, 180)
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+z_index = 1650
+material = SubResource("ShaderMaterial_ylw7x")
+offset_left = -15.0103
+offset_top = 469.848
+offset_right = 1330.99
+offset_bottom = 923.848
+color = Color(0.90625, 0.609199, 0, 1)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

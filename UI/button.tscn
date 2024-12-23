@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://5mfkfjv1f073"]
 
 [ext_resource type="Script" path="res://UI/button.gd" id="1_10yid"]
-[ext_resource type="FontFile" uid="uid://b8upb2xuqlq8o" path="res://arapey-regular.ttf" id="1_lkgjx"]
+[ext_resource type="FontFile" uid="uid://xtr6xeqnjwch" path="res://VCR_OSD_MONO_1.001.ttf" id="2_nwbvb"]
 [ext_resource type="AudioStream" uid="uid://dln6riynxfsqs" path="res://crow.wav" id="3_3clrk"]
 [ext_resource type="AudioStream" uid="uid://bsbav2hyoan1p" path="res://USA Anthem but it has gunshots, eagles sounds, and patriotism.mp3" id="4_a8cv3"]
 
@@ -122,9 +122,9 @@ script = ExtResource("1_10yid")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 3.0
-offset_right = 116.0
+offset_right = 154.0
 offset_bottom = 48.0
-theme_override_fonts/font = ExtResource("1_lkgjx")
+theme_override_fonts/font = ExtResource("2_nwbvb")
 theme_override_font_sizes/font_size = 43
 text = "Button"
 
