@@ -48,6 +48,7 @@ func jump():
 	if(wall_jump == 0):
 		velocity.y = min(-jumpheight,velocity.y)
 		$sounds/jump.play()
+	LevelManger.start_moving()
 	%cyote.stop()
 	%buffer.stop()
 	
@@ -57,7 +58,6 @@ func _reset_wall_jumps():
 
 func _wall_jump():
 	if(wall_jumps == 0): return
-	LevelManger.start_moving()
 	$sounds/jump.play()
 	velocity.y = min(-jumpheight,velocity.y)
 	velocity.x = -wall_jump * 500

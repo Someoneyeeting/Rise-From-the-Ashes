@@ -7,14 +7,10 @@ var current_level = -1
 var has_dash := false
 
 var levels = [
-	preload("res://node_2d.tscn"),
-	preload("res://chain.tscn")
+	[preload("res://node_2d.tscn"),"doubleboost"],
+	[preload("res://chain.tscn"),"chain"],
 ]
 
-var levelnames = [
-	"test",
-	"chain"
-]
 
 func _ready() -> void:
 	#restart()
@@ -32,7 +28,7 @@ func _input(event: InputEvent) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 func get_level_name(level):
-	return levelnames[level]
+	return levels[level][1]
 
 func get_current_level_name():
 	return get_level_name(current_level)
@@ -40,7 +36,7 @@ func get_current_level_name():
 func load_level():
 	pause()
 	$TimerManger.restart()
-	get_tree().change_scene_to_packed.call_deferred(levels[current_level])
+	get_tree().change_scene_to_packed.call_deferred(levels[current_level][0])
 
 func switch_level(level,speed = 0.6):
 	%clevel.text = str(level + 1) + " / " + str(get_levels_count())

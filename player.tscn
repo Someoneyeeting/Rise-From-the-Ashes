@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c5fcsyr0qilmn"]
+[gd_scene load_steps=43 format=3 uid="uid://c5fcsyr0qilmn"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6ogng"]
 [ext_resource type="Texture2D" uid="uid://cu3qin4y28ixd" path="res://assets/pheonix_idle.png" id="2_ec43s"]
@@ -253,6 +253,32 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Shader" id="Shader_62tis"]
+code = "shader_type canvas_item;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	float dis = distance(vec2(0.5,0.5),UV);
+	if(dis > 0.5){
+		COLOR.a = 0.;
+	}
+	else{
+		COLOR.a = (0.5 - dis) * 0.1;
+	}
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60jku"]
+shader = SubResource("Shader_62tis")
+
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(1.45758, 1.45758)
 script = ExtResource("1_6ogng")
@@ -393,6 +419,13 @@ pitch_scale = 2.0
 stream = ExtResource("6_0041d")
 volume_db = -20.0
 pitch_scale = 2.0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_60jku")
+offset_left = -74.4526
+offset_top = -75.675
+offset_right = 73.5474
+offset_bottom = 72.325
 
 [connection signal="area_entered" from="firedetect" to="." method="_on_firedetect_area_entered"]
 [connection signal="timeout" from="pause" to="." method="_on_pause_timeout"]
