@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8g7xho8aaevf"]
+[gd_scene load_steps=10 format=3 uid="uid://b8g7xho8aaevf"]
 
 [ext_resource type="Texture2D" uid="uid://digojqi4lyvv0" path="res://assets/bg/tile001.png" id="2_rrx3o"]
 [ext_resource type="Texture2D" uid="uid://cb0h5m4cs7nid" path="res://assets/bg/tile002.png" id="3_kb7j1"]
@@ -63,6 +63,28 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ds00a"]
 shader = SubResource("Shader_wngkn")
+
+[sub_resource type="Shader" id="Shader_m7g40"]
+code = "shader_type canvas_item;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	COLOR = textureLod(SCREEN_TEXTURE,SCREEN_UV,0.9);
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wqc65"]
+shader = SubResource("Shader_m7g40")
 
 [node name="Parallax2D" type="Node2D"]
 z_index = -115
@@ -167,5 +189,12 @@ region_rect = Rect2(-35.125, 0, 320, 180)
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_wqc65")
+offset_left = -31.0
+offset_top = -9.0
+offset_right = 1329.0
+offset_bottom = 754.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
