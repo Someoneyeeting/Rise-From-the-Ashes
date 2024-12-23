@@ -42,13 +42,19 @@ func load_level():
 	$TimerManger.restart()
 	get_tree().change_scene_to_packed.call_deferred(levels[current_level])
 
-func switch_level(level):
+func switch_level(level,speed = 0.6):
 	%clevel.text = str(level + 1) + " / " + str(get_levels_count())
 	
 	%clevel.set_global_position(Vector2(1280,720)/2 - (%clevel.get_rect().size / 2))
-	%clevel.visible = not (level == current_level)
+	#%clevel.visible = not (level == current_level)
+	%clevel2.text = $TimerManger.get_time_as_string($TimerManger.get_level_best_time(level))
 	current_level = level
+	$AnimationPlayer.speed_scale = speed
 	$AnimationPlayer.play("switch")
+	
+
+func clear_times():
+	$TimerManger.clear_times()
 
 func start_music():
 	if(not $AudioStreamPlayer.playing):
@@ -59,7 +65,7 @@ func stop_music():
 
 func restart():
 	$TimerManger.restart()
-	switch_level(current_level)
+	switch_level(current_level,1.)
 
 func win():
 	$TimerManger.finish(current_level)

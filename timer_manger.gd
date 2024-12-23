@@ -7,6 +7,8 @@ var timer :float=0
 
 var times = {}
 
+var bettertime = Color("ffdc00")
+
 const TIMESFILE := "user://times.save"
 
 func save_times():
@@ -57,6 +59,11 @@ func start():
 		if(is_passed_level(LevelManger.current_level)):
 			$CanvasLayer/Label.show()
 
+func get_time_as_string(time):
+	if(time == -1):
+		return "--/--"
+	return str(int(time)) + ":" + str(time - int(time)).substr(2,2)
+
 func finish(level):
 	pause()
 	save_level_time(level)
@@ -90,4 +97,9 @@ func _physics_process(delta: float) -> void:
 	#if(is_passed_level(LevelManger.current_level)):
 		#print(get_level_best_time(LevelManger.current_level))
 	
-	$CanvasLayer/Label.text = str(int(timer)) + ":" + str(timer - int(timer)).substr(2,2)
+	if(timer < get_level_best_time(LevelManger.current_level)):
+		$CanvasLayer/Label.label_settings.font_color = bettertime
+	else:
+		$CanvasLayer/Label.label_settings.font_color = Color.WHITE
+	
+	$CanvasLayer/Label.text = get_time_as_string(timer)

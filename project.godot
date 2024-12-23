@@ -21,6 +21,7 @@ Particalhandler="*res://particalhandler.tscn"
 CameraHandler="*res://camera_handler.tscn"
 LevelManger="*res://level_manger.tscn"
 MenuManger="*res://UI/menu_manger.tscn"
+SettingsManager="*res://settings_manager.tscn"
 
 [display]
 
