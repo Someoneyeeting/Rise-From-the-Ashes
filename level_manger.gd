@@ -1,12 +1,15 @@
 extends Node2D
 
 
+signal end
 
 var current_level = -1
 
 var has_dash := false
 
 var levels = [
+	[preload("res://levels/first.tscn"),"first"],
+	[preload("res://levels/testklvl.tscn"),"test"],
 	[preload("res://levels/walljump.tscn"),"walljump"],
 	[preload("res://levels/node_2d.tscn"),"doubleboost"],
 	[preload("res://levels/chain.tscn"),"chain"],

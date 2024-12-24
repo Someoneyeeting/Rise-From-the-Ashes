@@ -29,15 +29,13 @@ shader = SubResource("Shader_r42v8")
 script = ExtResource("1_0nm0s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(62, 10)
+position = Vector2(72, 20)
 shape = SubResource("RectangleShape2D_vi72s")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_f6kfy")
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 134.0
-offset_bottom = 30.0
+offset_right = 144.0
+offset_bottom = 40.0
 color = Color(1, 0.985366, 0.0889137, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

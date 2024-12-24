@@ -270,6 +270,8 @@ func _handle_launch(i):
 
 
 func _physics_process(delta: float) -> void:
+	if(global_position.y >= 1500):
+		LevelManger.restart()
 	if(not $cooldown.is_stopped()):
 		return
 	$flames.emitting = not $flamestime.is_stopped()

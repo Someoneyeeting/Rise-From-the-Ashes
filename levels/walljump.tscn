@@ -25,4 +25,4 @@ position = Vector2(1202.33, 333.258)
 position = Vector2(792.545, 257.913)
 
 [node name="win" parent="." instance=ExtResource("5_omkaw")]
-position = Vector2(60.2262, 68.599)
+position = Vector2(49.2262, 56.599)

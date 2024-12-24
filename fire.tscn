@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://xl2c3slxjx3o"]
+[gd_scene load_steps=6 format=3 uid="uid://xl2c3slxjx3o"]
 
 [ext_resource type="Script" path="res://fire.gd" id="1_hjbgv"]
+[ext_resource type="Texture2D" uid="uid://b5gx8frwximmy" path="res://assets/campfire_platform.png" id="2_naca0"]
+[ext_resource type="Texture2D" uid="uid://dts7vk5j32lvo" path="res://assets/campfire_orb.png" id="3_s3rfl"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tiqq4"]
 particle_flag_disable_z = true
@@ -34,3 +36,14 @@ draw_order = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -7.5)
 shape = SubResource("RectangleShape2D_e235j")
+
+[node name="CampfirePlatform" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(2.37073, 2.37073)
+texture = ExtResource("2_naca0")
+
+[node name="CampfireOrb" type="Sprite2D" parent="CampfirePlatform"]
+modulate = Color(1, 0.598752, 0.117983, 1)
+position = Vector2(-0.604167, -11.4792)
+scale = Vector2(0.604167, 0.604167)
+texture = ExtResource("3_s3rfl")

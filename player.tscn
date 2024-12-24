@@ -91,7 +91,7 @@ turbulence_initial_displacement_max = 1.49012e-06
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kj1i6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1qrky"]
-radius = 35.0703
+radius = 44.2626
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vemy7"]
 size = Vector2(2.135, 19.844)

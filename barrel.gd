@@ -5,7 +5,7 @@ var prevspeed :float= 0
 var to_break := false
 
 @export
-var is_static = false
+var is_static = true
 
 var exploded = false
 

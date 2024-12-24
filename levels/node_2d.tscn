@@ -27,7 +27,7 @@ zoom = Vector2(0.715, 0.715)
 position = Vector2(1120.6, 663.241)
 
 [node name="win" parent="." instance=ExtResource("5_ypslv")]
-position = Vector2(1564.75, 794.219)
+position = Vector2(1564.75, 780.219)
 scale = Vector2(1.59, 1)
 
 [node name="CPUParticles2D" parent="." instance=ExtResource("6_kxebf")]

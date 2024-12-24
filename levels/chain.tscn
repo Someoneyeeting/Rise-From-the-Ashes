@@ -27,7 +27,7 @@ position = Vector2(187.646, 452.427)
 position = Vector2(734.703, 63.9202)
 
 [node name="win" parent="." instance=ExtResource("5_c26xv")]
-position = Vector2(1123.92, 500.748)
+position = Vector2(1109.92, 486.748)
 scale = Vector2(1.285, 1)
 
 [node name="Fire" parent="." instance=ExtResource("7_0ngtx")]
