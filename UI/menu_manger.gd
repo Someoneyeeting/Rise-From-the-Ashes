@@ -4,7 +4,8 @@ class_name UIManger
 var curmenu
 var menus = {
 	"main" : preload("res://UI/MainMenu.tscn"),
-	"times" : preload("res://vectoryScene.tscn")
+	"times" : preload("res://vectoryScene.tscn"),
+	"confirm" : preload("res://UI/confirm.tscn"),
 }
 @export var startmenu := true
 

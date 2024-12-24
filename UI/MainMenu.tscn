@@ -13,7 +13,8 @@ func _on_button_press() -> void:
 
 
 func _on_button_2_press() -> void:
-	LevelManger.clear_times()
+	MenuManger.open_menu(\"confirm\")
+	#LevelManger.clear_times()
 "
 
 [node name="MainMenu" type="Node2D" node_paths=PackedStringArray("buttons")]

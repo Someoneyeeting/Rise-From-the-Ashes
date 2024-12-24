@@ -19,9 +19,9 @@ func _input(event: InputEvent) -> void:
 	if(not selected or not is_visible_in_tree()):
 		return
 	if(buttons.get_child_count() > 1):
-		if(Input.is_action_just_pressed("ui_down")):
+		if(Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("ui_left")):
 			curselect += 1
-		elif(Input.is_action_just_pressed("ui_up")):
+		elif(Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_right")):
 			curselect -= 1
 		else:
 			return

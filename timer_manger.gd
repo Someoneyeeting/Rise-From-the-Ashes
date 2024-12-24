@@ -92,10 +92,11 @@ func _ready() -> void:
 	load_times()
 
 func _physics_process(delta: float) -> void:
-	if(not paused):
+	if(not paused and not get_tree().paused):
 		timer += delta
 	
 	if(LevelManger.current_level == -1):
+		$CanvasLayer/Label.hide()
 		return
 	#
 	#if(is_passed_level(LevelManger.current_level)):

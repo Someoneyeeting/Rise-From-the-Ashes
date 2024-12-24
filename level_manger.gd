@@ -8,11 +8,12 @@ var current_level = -1
 var has_dash := false
 
 var levels = [
+	[preload("res://levels/firstfr.tscn"),"firstfr"],
 	[preload("res://levels/first.tscn"),"first"],
-	[preload("res://levels/testklvl.tscn"),"test"],
-	[preload("res://levels/walljump.tscn"),"walljump"],
 	[preload("res://levels/node_2d.tscn"),"doubleboost"],
+	[preload("res://levels/walljump.tscn"),"walljump"],
 	[preload("res://levels/chain.tscn"),"chain"],
+	[preload("res://levels/testklvl.tscn"),"test"],
 ]
 
 
@@ -62,7 +63,7 @@ func get_time_as_string_minutes(time):
 func get_total_time():
 	return $TimerManger.get_total_time()
 
-func switch_level(level,speed = 0.6):
+func switch_level(level,speed = 0.55):
 	if(get_tree().current_scene):
 		get_tree().current_scene.queue_free.call_deferred()
 	%clevel.text = str(level + 1) + " / " + str(get_levels_count())
@@ -94,7 +95,10 @@ func restart():
 func win():
 	$TimerManger.finish(current_level)
 	#pause()
-	get_next()
+	if(current_level == get_levels_count() - 1):
+		vectory()
+	else:
+		get_next()
 
 func vectory():
 	$AudioStreamPlayer.stop()
@@ -107,10 +111,7 @@ func vectory():
 	MenuManger.open_menu("times")
 	current_level = -1
 func get_next():
-	if(current_level == 0):
-		vectory()
-	else:
-		switch_level(current_level + 1)
+	switch_level(current_level + 1)
 
 func is_level_passed(level : int):
 	return $TimerManger.is_passed_level(level)

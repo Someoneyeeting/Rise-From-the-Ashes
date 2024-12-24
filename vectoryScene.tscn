@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://8akpuwdod4h8"]
+[gd_scene load_steps=10 format=3 uid="uid://8akpuwdod4h8"]
 
 [ext_resource type="FontFile" uid="uid://xtr6xeqnjwch" path="res://VCR_OSD_MONO_1.001.ttf" id="1_3y43a"]
 [ext_resource type="Script" path="res://UI/UIMenu.gd" id="1_dbhs1"]
@@ -16,6 +16,7 @@ var nodes = []
 func _ready() -> void:
 	$Timer.start(1.2)
 	#$ColorRect.modulate.a += 1
+	nodes.push_back($text)
 	for i in LevelManger.get_levels_count():
 		var node :Label= $FlowContainer.get_child(i)
 		nodes.push_back(node)
@@ -28,7 +29,7 @@ func _ready() -> void:
 
 
 func close():
-	print(show)
+	LevelManger.unpause()
 	if(show == nodes.size()):
 		MenuManger.close_current()
 		MenuManger.open_menu(\"main\")
@@ -64,6 +65,10 @@ font = ExtResource("1_3y43a")
 font_size = 80
 outline_size = 20
 outline_color = Color(0.0556782, 0.0614348, 0.414063, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xqqud"]
+font = ExtResource("1_3y43a")
+font_size = 40
 
 [node name="UIMenu" type="Node2D" node_paths=PackedStringArray("buttons")]
 process_mode = 3
@@ -102,7 +107,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 150
 theme_override_constants/v_separation = 30
-last_wrap_alignment = 2
 vertical = true
 
 [node name="Label" type="Label" parent="Node2D/FlowContainer"]
@@ -168,9 +172,9 @@ label_settings = SubResource("LabelSettings_00a1s")
 [node name="Label" type="Label" parent="Node2D"]
 visible = false
 layout_mode = 0
-offset_left = 469.0
+offset_left = 474.0
 offset_top = 473.0
-offset_right = 844.0
+offset_right = 849.0
 offset_bottom = 544.0
 text = "Total Time:"
 label_settings = SubResource("LabelSettings_qsuls")
@@ -191,6 +195,16 @@ one_shot = true
 
 [node name="thud" type="AudioStreamPlayer" parent="Node2D"]
 stream = ExtResource("3_337oq")
+
+[node name="text" type="Label" parent="Node2D"]
+visible = false
+layout_mode = 0
+offset_left = 521.0
+offset_top = 69.0
+offset_right = 802.0
+offset_bottom = 105.0
+text = "Best Scores:"
+label_settings = SubResource("LabelSettings_xqqud")
 
 [node name="buttons" type="Node2D" parent="."]
 visible = false
