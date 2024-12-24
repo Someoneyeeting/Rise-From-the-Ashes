@@ -187,7 +187,7 @@ func _handle_animation():
 	elif(state in ["dash","dash_falling"]):
 		sc = lerp(1.,0.6,abs(velocity.length()/ rising_speed))
 	else:
-		sc = 1/lerp(1.,0.85,abs(velocity.y/max_fall_speed))
+		sc = max(1.,1/lerp(1.,0.6,abs(velocity.y/max_fall_speed)))
 	
 	
 	#$PheonixBro.scale.x = lerp($PheonixBro.scale.x,$PheonixBro.scale.y if flip else -$PheonixBro.scale.y,0.7)

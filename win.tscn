@@ -1,20 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://bs46qeqgw42g6"]
+[gd_scene load_steps=5 format=3 uid="uid://bs46qeqgw42g6"]
 
 [ext_resource type="Script" path="res://win.gd" id="1_0nm0s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vi72s"]
+size = Vector2(144, 40)
+
+[sub_resource type="Shader" id="Shader_r42v8"]
+code = "shader_type canvas_item;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	COLOR.a = UV.y + sin(TIME + UV.y * 10.) / 15.;
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f6kfy"]
+shader = SubResource("Shader_r42v8")
 
 [node name="win" type="Area2D"]
 script = ExtResource("1_0nm0s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(62, 10)
 shape = SubResource("RectangleShape2D_vi72s")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_f6kfy")
 offset_left = -10.0
 offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
+offset_right = 134.0
+offset_bottom = 30.0
 color = Color(1, 0.985366, 0.0889137, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

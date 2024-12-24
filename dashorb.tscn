@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://pc5wtqu8b405"]
+[gd_scene load_steps=6 format=3 uid="uid://pc5wtqu8b405"]
 
 [ext_resource type="Script" path="res://dashorb.gd" id="1_88qbm"]
+[ext_resource type="Texture2D" uid="uid://inifgusftlhy" path="res://assets/circle.png" id="2_3lefh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_633ta"]
-radius = 30.7621
+radius = 28.5359
 
 [sub_resource type="Shader" id="Shader_pwoqd"]
 code = "shader_type canvas_item;
@@ -13,8 +14,8 @@ void vertex() {
 }
 
 void fragment() {
-	if(distance(UV,vec2(0.5,0.5)) > 0.5)
-		COLOR.a = 0.0;
+	float dist = distance(UV,vec2(0.5,0.5));
+	COLOR.a = min(COLOR.a,dist * dist + 0.5 + sin((TIME * 1. + dist) * 3.) / 20.);
 }
 
 //void light() {
@@ -40,10 +41,8 @@ shape = SubResource("CircleShape2D_633ta")
 wait_time = 2.0
 one_shot = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Circle" type="Sprite2D" parent="."]
+modulate = Color(1, 0.553443, 0, 1)
 material = SubResource("ShaderMaterial_y3jf6")
-offset_left = -31.0
-offset_top = -31.0
-offset_right = 31.0
-offset_bottom = 31.0
-color = Color(0.73, 0.504917, 0.1898, 1)
+scale = Vector2(1.28706, 1.28706)
+texture = ExtResource("2_3lefh")
