@@ -31,7 +31,7 @@ shader = SubResource("Shader_pwoqd")
 z_index = -1
 scale = Vector2(1.35922, 1.35922)
 script = ExtResource("1_88qbm")
-dash_color = Color(1, 0.584314, 0.215686, 1)
+dash_color = Color(1, 0.4, 0, 1)
 no_dash_color = Color(0.164706, 0.254902, 0.352941, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -42,7 +42,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Circle" type="Sprite2D" parent="."]
-modulate = Color(1, 0.553443, 0, 1)
+modulate = Color(1, 0.4, 0, 1)
 material = SubResource("ShaderMaterial_y3jf6")
 scale = Vector2(1.28706, 1.28706)
 texture = ExtResource("2_3lefh")

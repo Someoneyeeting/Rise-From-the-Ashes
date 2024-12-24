@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://ccpwej3kwaens"]
+[gd_scene load_steps=11 format=4 uid="uid://ccpwej3kwaens"]
 
 [ext_resource type="PackedScene" uid="uid://c5fcsyr0qilmn" path="res://player.tscn" id="1_yaku2"]
 [ext_resource type="PackedScene" uid="uid://c2ybgge6h720f" path="res://tile_map_layer.tscn" id="2_l81cy"]
@@ -6,6 +6,31 @@
 [ext_resource type="PackedScene" uid="uid://pc5wtqu8b405" path="res://dashorb.tscn" id="5_qi64t"]
 [ext_resource type="PackedScene" uid="uid://bs46qeqgw42g6" path="res://win.tscn" id="5_ypslv"]
 [ext_resource type="PackedScene" uid="uid://cwxcjyyptmyhn" path="res://cpu_particles_2d.tscn" id="6_kxebf"]
+[ext_resource type="Texture2D" uid="uid://bk1l134clqg4h" path="res://Keyboard Extras.png" id="7_wmtk4"]
+[ext_resource type="FontFile" uid="uid://xtr6xeqnjwch" path="res://VCR_OSD_MONO_1.001.ttf" id="8_l77d5"]
+
+[sub_resource type="GDScript" id="GDScript_5k715"]
+script/source = "extends Sprite2D
+
+
+func _physics_process(delta: float) -> void:
+	if(LevelManger.has_dash):
+		modulate = Color(\"ff6500\")
+	else:
+		modulate = Color.WHITE * 0.4
+
+	var dir := Vector2(Input.get_action_strength(\"right\") - Input.get_action_strength(\"left\"),Input.get_action_strength(\"down\") - Input.get_action_strength(\"up\"))
+	
+	if(dir == Vector2.ZERO):
+		$arrow.hide()
+	else:
+		$arrow.show()
+		$arrow.global_rotation = dir.angle()
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ppfl"]
+font = ExtResource("8_l77d5")
+font_size = 60
 
 [node name="Node2D" type="Node2D"]
 
@@ -33,3 +58,24 @@ scale = Vector2(1.59, 1)
 [node name="CPUParticles2D" parent="." instance=ExtResource("6_kxebf")]
 position = Vector2(889.734, 509.84)
 scale = Vector2(1.399, 1.399)
+
+[node name="KeyboardExtras" type="Sprite2D" parent="."]
+modulate = Color(1, 0.4, 0, 1)
+position = Vector2(1179.59, 873.619)
+scale = Vector2(4.8448, 4.02986)
+texture = ExtResource("7_wmtk4")
+region_enabled = true
+region_rect = Rect2(0.684603, 17.957, 29.8565, 12.9498)
+script = SubResource("GDScript_5k715")
+
+[node name="arrow" type="Node2D" parent="KeyboardExtras"]
+position = Vector2(-0.841284, 0)
+
+[node name="Label" type="Label" parent="KeyboardExtras/arrow"]
+offset_left = 18.4736
+offset_top = -3.09476
+offset_right = 58.4736
+offset_bottom = 19.9052
+scale = Vector2(0.10127, 0.10127)
+text = "-->"
+label_settings = SubResource("LabelSettings_3ppfl")

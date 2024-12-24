@@ -8,9 +8,11 @@ var current_level = -1
 var has_dash := false
 
 var levels = [
+	[preload("res://levels/box.tscn"),"box"],
+	[preload("res://levels/node_2d.tscn"),"doubleboost"],
 	[preload("res://levels/firstfr.tscn"),"firstfr"],
 	[preload("res://levels/first.tscn"),"first"],
-	[preload("res://levels/node_2d.tscn"),"doubleboost"],
+	[preload("res://levels/second.tscn"),"second"],
 	[preload("res://levels/walljump.tscn"),"walljump"],
 	[preload("res://levels/chain.tscn"),"chain"],
 	[preload("res://levels/testklvl.tscn"),"test"],
