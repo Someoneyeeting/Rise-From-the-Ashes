@@ -7,6 +7,7 @@ var on_fire = true
 var t : float = 0.
 
 
+
 func _physics_process(delta: float) -> void:
 	if(not on_fire):
 		turn_off()

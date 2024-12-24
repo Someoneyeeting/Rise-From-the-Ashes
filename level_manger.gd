@@ -47,14 +47,26 @@ func load_level():
 	$TimerManger.restart()
 	get_tree().change_scene_to_packed.call_deferred(levels[current_level][0])
 
+func get_time_as_string(time):
+	return $TimerManger.get_time_as_string(time)
+
+func get_time_as_string_minutes(time):
+	
+	var seconds :int= int(time)
+	var minutes :int= seconds / 60
+	seconds %= 60
+	var ms := int(str(time - int(time)).substr(2,2))
+	
+	return "%02d:%02d:%02d" % [minutes,seconds,ms]
+
+func get_total_time():
+	return $TimerManger.get_total_time()
+
 func switch_level(level,speed = 0.6):
 	if(get_tree().current_scene):
 		get_tree().current_scene.queue_free.call_deferred()
 	%clevel.text = str(level + 1) + " / " + str(get_levels_count())
 	
-	%prevbest.text = $TimerManger.get_time_as_string($TimerManger.get_level_best_time(level))
-	%prevbest.hide()
-	%current.hide()
 	
 	%clevel.set_global_position(Vector2(1280,720)/2 - (%clevel.get_rect().size / 2))
 	unpause()
@@ -81,14 +93,19 @@ func restart():
 
 func win():
 	$TimerManger.finish(current_level)
-	%current.text = $TimerManger.get_time_as_string($TimerManger.get_current_time())
-	%current.show()
-	%prevbest.show()
 	#pause()
 	get_next()
 
+func vectory():
+	get_tree().current_scene.queue_free()
+	pause()
+	MenuManger.open_menu("times")
+	current_level = -1
 func get_next():
-	switch_level(current_level + 1)
+	if(current_level == 0):
+		vectory()
+	else:
+		switch_level(current_level + 1)
 
 func is_level_passed(level : int):
 	return $TimerManger.is_passed_level(level)

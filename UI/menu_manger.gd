@@ -3,7 +3,8 @@ class_name UIManger
 
 var curmenu
 var menus = {
-	"main" : preload("res://UI/MainMenu.tscn")
+	"main" : preload("res://UI/MainMenu.tscn"),
+	"times" : preload("res://vectoryScene.tscn")
 }
 @export var startmenu := true
 

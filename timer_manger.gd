@@ -39,8 +39,9 @@ func save_level_time(level):
 
 func get_total_time():
 	var total :float= 0
-	for i in times.values():
-		total += i
+	for i in LevelManger.get_levels_count():
+		if(is_passed_level(i)):
+			total += get_level_best_time(i)
 	return total
 
 func get_level_best_time(level):
