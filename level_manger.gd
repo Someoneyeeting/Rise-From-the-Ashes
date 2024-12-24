@@ -97,8 +97,13 @@ func win():
 	get_next()
 
 func vectory():
-	get_tree().current_scene.queue_free()
+	$AudioStreamPlayer.stop()
 	pause()
+	$vectory.play()
+	
+	await $vectory.finished
+	
+	get_tree().current_scene.queue_free()
 	MenuManger.open_menu("times")
 	current_level = -1
 func get_next():

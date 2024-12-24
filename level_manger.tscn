@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bd5kexc601vxk"]
+[gd_scene load_steps=17 format=3 uid="uid://bd5kexc601vxk"]
 
 [ext_resource type="Script" path="res://level_manger.gd" id="1_0iq53"]
 [ext_resource type="PackedScene" uid="uid://dybub2e8c5acg" path="res://timer_manger.tscn" id="2_vbynv"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cswe6inyfjied" path="res://assets/pheonix_bro.png" id="6_djhgj"]
 [ext_resource type="Texture2D" uid="uid://bete7in3sdu4k" path="res://assets/tile_all_sides_.png" id="7_vp3fl"]
 [ext_resource type="PackedScene" uid="uid://b8g7xho8aaevf" path="res://parallax_2d.tscn" id="8_liqj6"]
+[ext_resource type="AudioStream" uid="uid://d0s5l2wjxiu6y" path="res://audio/Boxing Bell Sound Effect.wav" id="9_kq0hk"]
 
 [sub_resource type="Animation" id="Animation_htmmm"]
 length = 0.032
@@ -206,3 +207,7 @@ layer = -99
 libraries = {
 "": SubResource("AnimationLibrary_4n3tp")
 }
+
+[node name="vectory" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_kq0hk")
+volume_db = -4.0
