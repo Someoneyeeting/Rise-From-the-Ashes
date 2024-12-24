@@ -1,8 +1,10 @@
-[gd_scene load_steps=43 format=3 uid="uid://c5fcsyr0qilmn"]
+[gd_scene load_steps=39 format=3 uid="uid://c5fcsyr0qilmn"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6ogng"]
+[ext_resource type="PackedScene" uid="uid://fggy11bjxg0p" path="res://flames.tscn" id="2_51aj4"]
 [ext_resource type="Texture2D" uid="uid://cu3qin4y28ixd" path="res://assets/pheonix_idle.png" id="2_ec43s"]
 [ext_resource type="Texture2D" uid="uid://2qfm1kspkr82" path="res://assets/pheonix_dash_spritesheet.png" id="2_hqf8s"]
+[ext_resource type="PackedScene" uid="uid://4qhn575bdqwd" path="res://minorframes.tscn" id="3_2trc7"]
 [ext_resource type="AudioStream" uid="uid://bnuhcksmw5if5" path="res://audio/undet/hitHurt.wav" id="3_dkswt"]
 [ext_resource type="Texture2D" uid="uid://o24hudxa3igm" path="res://assets/pheonix_fall_spritesheet.png" id="3_fac0x"]
 [ext_resource type="Texture2D" uid="uid://bjrvldpo5rj60" path="res://assets/pheonix_run_spritesheet.png" id="4_12nwq"]
@@ -11,80 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://coy7alibqvy1b" path="res://audio/undet/land.wav" id="5_v871l"]
 [ext_resource type="Texture2D" uid="uid://dk84uvr7it575" path="res://assets/pheonix_walljump_spritesheet.png" id="6_8tvnp"]
 [ext_resource type="AudioStream" uid="uid://bt1124o0c5rbd" path="res://audio/undet/afterdash.wav" id="6_0041d"]
-
-[sub_resource type="Curve" id="Curve_hw5du"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.866667, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_gxykr"]
-curve = SubResource("Curve_hw5du")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pi5xo"]
-lifetime_randomness = 1.0
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 18.55
-angle_min = -720.0
-angle_max = 720.0
-inherit_velocity_ratio = 2.785
-direction = Vector3(0, 1, 0)
-spread = 7.872
-initial_velocity_min = 145.16
-initial_velocity_max = 467.74
-angular_velocity_min = -255.48
-angular_velocity_max = 193.55
-gravity = Vector3(0, 98, 0)
-scale_min = 0.1
-scale_max = 4.95
-scale_curve = SubResource("CurveTexture_gxykr")
-color = Color(1, 0.741768, 0, 1)
-hue_variation_min = -0.09
-hue_variation_max = 0.08
-turbulence_enabled = true
-turbulence_noise_strength = 1.25
-turbulence_noise_scale = 0.482
-turbulence_noise_speed = Vector3(2.525, 1.055, 0)
-turbulence_noise_speed_random = 0.5
-turbulence_influence_min = 0.0
-turbulence_influence_max = 1.0
-turbulence_initial_displacement_min = 1.49012e-06
-turbulence_initial_displacement_max = 1.49012e-06
-
-[sub_resource type="Curve" id="Curve_gk6j4"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.866667, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_f570o"]
-curve = SubResource("Curve_gk6j4")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u4phj"]
-lifetime_randomness = 1.0
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 18.55
-angle_min = -720.0
-angle_max = 720.0
-inherit_velocity_ratio = 2.785
-direction = Vector3(0, 1, 0)
-spread = 180.0
-initial_velocity_max = 96.77
-angular_velocity_min = -255.48
-angular_velocity_max = 193.55
-gravity = Vector3(0, 98, 0)
-scale_min = 0.1
-scale_max = 4.95
-scale_curve = SubResource("CurveTexture_f570o")
-color = Color(1, 0.741768, 0, 1)
-hue_variation_min = -0.09
-hue_variation_max = 0.08
-turbulence_noise_strength = 1.25
-turbulence_noise_scale = 0.482
-turbulence_noise_speed = Vector3(2.525, 1.055, 0)
-turbulence_noise_speed_random = 0.5
-turbulence_influence_min = 0.0
-turbulence_influence_max = 1.0
-turbulence_initial_displacement_min = 1.49012e-06
-turbulence_initial_displacement_max = 1.49012e-06
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo88o"]
 
@@ -293,21 +221,10 @@ wall_slide_speed = 100.0
 dash_color = Color(0.705882, 0.231373, 0.156863, 1)
 no_dash_color = Color(0.161945, 0.298023, 0.47451, 1)
 
-[node name="flames" type="GPUParticles2D" parent="."]
+[node name="flames" parent="." instance=ExtResource("2_51aj4")]
 emitting = false
-amount = 3000
-process_material = SubResource("ParticleProcessMaterial_pi5xo")
-lifetime = 0.9
-preprocess = 0.3
-visibility_rect = Rect2(-80.0091, -66.6557, 159.821, 431.872)
 
-[node name="minorframes" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 70
-process_material = SubResource("ParticleProcessMaterial_u4phj")
-lifetime = 2.0
-preprocess = 0.3
-visibility_rect = Rect2(-80.0091, -66.6557, 159.821, 431.872)
+[node name="minorframes" parent="." instance=ExtResource("3_2trc7")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jo88o")

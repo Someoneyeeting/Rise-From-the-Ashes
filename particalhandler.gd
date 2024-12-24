@@ -2,7 +2,9 @@ extends Node2D
 
 var parts = {
 	"explosion" : preload("res://particles/explosion.tscn"),
-	"boom" : preload("res://particles/boom.tscn")
+	"boom" : preload("res://particles/boom.tscn"),
+	"flames" : preload("res://flames.tscn"),
+	"minorflames" : preload("res://minorframes.tscn"),
 }
 
 @onready var soundeffects = {
@@ -15,6 +17,15 @@ func clean():
 			i = i as GPUParticles2D
 			if(not i.emitting):
 				i.queue_free()
+
+func _ready() -> void:
+	for i in parts:
+		emit(i,Vector2(-100,-100))
+	
+	await get_tree().create_timer(0.5).timeout
+	
+	for i in $particles.get_children():
+		i.queue_free()
 
 func play(sound : String):
 	soundeffects[sound].play()

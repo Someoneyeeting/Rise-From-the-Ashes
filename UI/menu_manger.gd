@@ -6,14 +6,14 @@ var menus = {
 	"main" : preload("res://UI/MainMenu.tscn"),
 	"times" : preload("res://vectoryScene.tscn"),
 	"confirm" : preload("res://UI/confirm.tscn"),
+	"note" : preload("res://UI/note.tscn")
 }
 @export var startmenu := true
 
 func _ready() -> void:
-	if(startmenu):
-		open_menu("main")
-	else:
-		open_menu("pause")
+	open_menu("main")
+	if("web" in OS.get_name().to_lower()):
+		open_menu("note")
 
 func open_menu(menu):
 	var men = menus[menu].instantiate()

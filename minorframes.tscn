@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://4qhn575bdqwd"]
+
+[sub_resource type="Curve" id="Curve_gk6j4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.866667, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_f570o"]
+curve = SubResource("Curve_gk6j4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u4phj"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 18.55
+angle_min = -720.0
+angle_max = 720.0
+inherit_velocity_ratio = 2.785
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_max = 96.77
+angular_velocity_min = -255.48
+angular_velocity_max = 193.55
+gravity = Vector3(0, 98, 0)
+scale_min = 0.1
+scale_max = 4.95
+scale_curve = SubResource("CurveTexture_f570o")
+color = Color(1, 0.741768, 0, 1)
+hue_variation_min = -0.09
+hue_variation_max = 0.08
+turbulence_noise_strength = 1.25
+turbulence_noise_scale = 0.482
+turbulence_noise_speed = Vector3(2.525, 1.055, 0)
+turbulence_noise_speed_random = 0.5
+turbulence_influence_min = 0.0
+turbulence_influence_max = 1.0
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 1.49012e-06
+
+[node name="minorframes" type="GPUParticles2D"]
+emitting = false
+amount = 70
+process_material = SubResource("ParticleProcessMaterial_u4phj")
+lifetime = 2.0
+preprocess = 0.3
+visibility_rect = Rect2(-80.0091, -66.6557, 159.821, 431.872)
