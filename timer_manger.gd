@@ -6,6 +6,7 @@ var paused := false
 var timer :float=0
 
 var times = {}
+var curtimes = []
 
 var bettertime = Color("ffdc00")
 
@@ -33,9 +34,22 @@ func get_current_time():
 
 
 func save_level_time(level):
+	curtimes.push_back([timer,timer < get_level_best_time(level)])
 	if(not is_passed_level(level) or get_level_best_time(level) > timer):
 		times[LevelManger.get_level_name(level)] = get_current_time()
 	save_times()
+
+func get_current_total_time():
+	var total = 0
+	for i in curtimes:
+		total += i[0]
+	return total
+
+func get_level_current_time(level):
+	return curtimes[level][0]
+
+func get_is_new_best(level):
+	return curtimes[level][1]
 
 func get_total_time():
 	var total :float= 0

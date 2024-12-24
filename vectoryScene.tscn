@@ -20,12 +20,17 @@ func _ready() -> void:
 	for i in LevelManger.get_levels_count():
 		var node :Label= $FlowContainer.get_child(i)
 		nodes.push_back(node)
-		node.text = str(i + 1) + \": \" + LevelManger.get_time_as_string(LevelManger.get_level_time(i))
+		node.text = str(i + 1) + \": \" + LevelManger.get_time_as_string(LevelManger.get_current_level_time(i))
+		node.label_settings = node.label_settings.duplicate()
+		if(LevelManger.get_is_new_best(i)):
+			node.label_settings.font_color = Color.GOLD
+		else:
+			node.label_settings.font_color = Color.WHITE
 	
 	nodes.push_back($Label)
 	nodes.push_back($Label2)
 	nodes.push_back(get_parent().get_node(\"buttons\"))
-	$Label2.text = LevelManger.get_time_as_string_minutes(LevelManger.get_total_time())
+	$Label2.text = LevelManger.get_time_as_string_minutes(LevelManger.get_current_total_time())
 
 
 func close():
@@ -199,11 +204,11 @@ stream = ExtResource("3_337oq")
 [node name="text" type="Label" parent="Node2D"]
 visible = false
 layout_mode = 0
-offset_left = 521.0
+offset_left = 555.0
 offset_top = 69.0
-offset_right = 802.0
+offset_right = 836.0
 offset_bottom = 105.0
-text = "Best Scores:"
+text = "Times:"
 label_settings = SubResource("LabelSettings_xqqud")
 
 [node name="buttons" type="Node2D" parent="."]

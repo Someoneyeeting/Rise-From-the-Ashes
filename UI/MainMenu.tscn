@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfo6qkbdc3pk8"]
+[gd_scene load_steps=8 format=3 uid="uid://dfo6qkbdc3pk8"]
 
 [ext_resource type="Script" path="res://UI/UIMenu.gd" id="1_ju2xb"]
 [ext_resource type="PackedScene" uid="uid://5mfkfjv1f073" path="res://UI/button.tscn" id="2_bdnqi"]
@@ -27,6 +27,10 @@ font_color = Color(1, 0.588916, 0, 1)
 font = ExtResource("3_3p476")
 font_size = 80
 font_color = Color(0, 0.459649, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_50ivm"]
+font = ExtResource("3_3p476")
+font_size = 19
 
 [node name="MainMenu" type="Node2D" node_paths=PackedStringArray("buttons")]
 process_mode = 3
@@ -65,6 +69,15 @@ offset_right = 1201.0
 offset_bottom = 223.0
 text = "THE DASHES"
 label_settings = SubResource("LabelSettings_vxt5c")
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 664.0
+offset_right = 418.0
+offset_bottom = 705.0
+text = "Programming: Mahmoud Fathy
+Art and Music: Ahmed Fathy"
+label_settings = SubResource("LabelSettings_50ivm")
 
 [connection signal="Press" from="buttons/button" to="event" method="_on_button_press"]
 [connection signal="Press" from="buttons/button2" to="event" method="_on_button_2_press"]

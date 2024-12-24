@@ -8,12 +8,12 @@ var current_level = -1
 var has_dash := false
 
 var levels = [
-	[preload("res://levels/box.tscn"),"box"],
-	[preload("res://levels/node_2d.tscn"),"doubleboost"],
 	[preload("res://levels/firstfr.tscn"),"firstfr"],
 	[preload("res://levels/first.tscn"),"first"],
 	[preload("res://levels/second.tscn"),"second"],
+	[preload("res://levels/node_2d.tscn"),"doubleboost"],
 	[preload("res://levels/walljump.tscn"),"walljump"],
+	[preload("res://levels/box.tscn"),"box"],
 	[preload("res://levels/chain.tscn"),"chain"],
 	[preload("res://levels/testklvl.tscn"),"test"],
 ]
@@ -70,6 +70,9 @@ func switch_level(level,speed = 0.55):
 		get_tree().current_scene.queue_free.call_deferred()
 	%clevel.text = str(level + 1) + " / " + str(get_levels_count())
 	
+	if(level == 0):
+		$TimerManger.curtimes = []
+	
 	
 	%clevel.set_global_position(Vector2(1280,720)/2 - (%clevel.get_rect().size / 2))
 	unpause()
@@ -77,7 +80,16 @@ func switch_level(level,speed = 0.55):
 	current_level = level
 	$AnimationPlayer.speed_scale = speed
 	$AnimationPlayer.play("switch")
-	
+
+
+func get_current_level_time(level):
+	return $TimerManger.get_level_current_time(level)
+
+func get_is_new_best(level):
+	return $TimerManger.get_is_new_best(level)
+
+func get_current_total_time():
+	return $TimerManger.get_current_total_time()
 
 func clear_times():
 	$TimerManger.clear_times()
